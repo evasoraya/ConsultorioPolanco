@@ -1,5 +1,8 @@
 package main;
 
+import Entities.User;
+import Services.BootStrapService;
+import Services.UserServices;
 import freemarker.template.Configuration;
 import spark.ModelAndView;
 import spark.template.freemarker.FreeMarkerEngine;
@@ -21,8 +24,10 @@ public class main {
         configuration.setClassForTemplateLoading(main.class, "/templates");
         FreeMarkerEngine freeMarkerEngine = new FreeMarkerEngine(configuration);
 
+        BootStrapService.getInstancia().init();
 
-
+        User user = new User("da", "klk", "ok");
+        UserServices.getInstancia().crear(user);
         get("/", (request, response) -> {
 
             Map<String, Object> attributes = new HashMap<>();
