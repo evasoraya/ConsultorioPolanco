@@ -15,7 +15,7 @@ public class main {
     public static void main(String[] args) {
         enableDebugScreen();
         staticFileLocation("/");
-        port(7070);
+
 
         Configuration configuration = new Configuration(Configuration.VERSION_2_3_23);
         configuration.setClassForTemplateLoading(main.class, "/templates");
@@ -27,6 +27,16 @@ public class main {
 
             Map<String, Object> attributes = new HashMap<>();
             return new ModelAndView(attributes, "index.ftl");
+        }, freeMarkerEngine);
+        get("/patient", (request, response) -> {
+
+            Map<String, Object> attributes = new HashMap<>();
+            return new ModelAndView(attributes, "patients.ftl");
+        }, freeMarkerEngine);
+        get("/newPatient", (request, response) -> {
+
+            Map<String, Object> attributes = new HashMap<>();
+            return new ModelAndView(attributes, "newPatient.ftl");
         }, freeMarkerEngine);
 
     }
