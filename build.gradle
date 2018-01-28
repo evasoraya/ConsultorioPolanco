@@ -16,6 +16,7 @@ dependencies {
     compile 'org.freemarker:freemarker:2.3.23'
     compile 'com.sparkjava:spark-debug-tools:0.5'
     runtime 'org.slf4j:slf4j-simple:1.7.21'
+    compile 'com.h2database:h2:1.4.192'
     compile 'org.hibernate:hibernate-core:5.1.0.Final'
     compile 'org.hibernate:hibernate-entitymanager:5.1.0.Final'
 

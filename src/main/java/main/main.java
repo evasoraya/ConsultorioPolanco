@@ -1,5 +1,6 @@
 package main;
 
+import Services.BootStrapService;
 import freemarker.template.Configuration;
 import spark.ModelAndView;
 import spark.template.freemarker.FreeMarkerEngine;
@@ -21,7 +22,7 @@ public class main {
         configuration.setClassForTemplateLoading(main.class, "/templates");
         FreeMarkerEngine freeMarkerEngine = new FreeMarkerEngine(configuration);
 
-
+        BootStrapService.getInstancia().init();
 
         get("/", (request, response) -> {
 
