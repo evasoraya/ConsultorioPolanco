@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="index.html" class="site_title"><i class="fa fa-user-md"></i> <span>Consultorio</span></a>
+            <a href="index.html" class="site_title"><i class="fa fa-user-md fa-2x"></i> <span>Consultorio</span></a>
         </div>
 
         <div class="clearfix"></div>
@@ -25,17 +25,16 @@
             <div class="menu_section">
 
                 <ul class="nav side-menu">
-                    <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                    <li><a href="/"><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
 
                     </li>
-                    <li><a><i class="fa fa-edit"></i> Patients <span class="fa fa-chevron-down"></span></a>
+                    <li><a href="/patient"><i class="fa fa-edit"></i> Patients <span class="fa fa-chevron-down"></span></a>
 
                     </li>
-                    <li><a><i class="fa fa-desktop"></i> Consulting <span class="fa fa-chevron-down"></span></a>
+                    <li><a href="/consultation"><i class="fa fa-desktop"></i> Consulting <span class="fa fa-chevron-down"></span></a>
 
                     </li>
-                    <li><a><i class="fa fa-table"></i> Appointments <span class="fa fa-chevron-down"></span></a>
-
+                    <li><a href="/appointment"><i class="fa fa-table"></i> Appointments <span class="fa fa-chevron-down"></span></a>
                     </li>
 
                 </ul>

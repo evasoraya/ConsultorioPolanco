@@ -31,40 +31,7 @@
         <!-- page content -->
         <div class="right_col" role="main">
             <div class="">
-                <div class="row top_tiles">
-                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="tile-stats">
-                            <div class="icon"><i class="fa fa-caret-square-o-right"></i></div>
-                            <div class="count">179</div>
-                            <h3>New Sign ups</h3>
-                            <p>Lorem ipsum psdea itgum rixt.</p>
-                        </div>
-                    </div>
-                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="tile-stats">
-                            <div class="icon"><i class="fa fa-comments-o"></i></div>
-                            <div class="count">179</div>
-                            <h3>New Sign ups</h3>
-                            <p>Lorem ipsum psdea itgum rixt.</p>
-                        </div>
-                    </div>
-                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="tile-stats">
-                            <div class="icon"><i class="fa fa-sort-amount-desc"></i></div>
-                            <div class="count">179</div>
-                            <h3>New Sign ups</h3>
-                            <p>Lorem ipsum psdea itgum rixt.</p>
-                        </div>
-                    </div>
-                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="tile-stats">
-                            <div class="icon"><i class="fa fa-check-square-o"></i></div>
-                            <div class="count">179</div>
-                            <h3>New Sign ups</h3>
-                            <p>Lorem ipsum psdea itgum rixt.</p>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="row">
                     <div class="col-md-12">
                         <div class="x_panel">
@@ -80,21 +47,26 @@
                                 </div>
                                 <div class="col-md-3 col-sm-12 col-xs-12">
                                     <div class="x_title">
-                                        <h2>Patients Queque for today</h2>
+                                        <h2>Patients Queue for today</h2>
 
                                         <div class="clearfix"></div>
                                     </div>
                                     <ul class="list-unstyled top_profiles scroll-view">
-                                        <li class="media event">
-                                            <a class="pull-left border-aero profile_thumb">
-                                                <i class="fa fa-wheelchair aero"></i>
-                                            </a>
-                                            <div class="media-body">
-                                                <a class="title" href="#">Ms. Mary Jane</a>
-                                                <p><strong>Insuranced </strong> New </p>
+                                       <#list patients as p>
 
-                                            </div>
-                                        </li>
+                                           <li class="media event">
+
+                                                <a class="pull-left border-aero profile_thumb">
+                                                    <i class="fa fa-wheelchair aero"></i>
+                                                </a>
+                                                <div class="media-body">
+                                                    <a  class="title" href="/patientProfile/${p.patient.code}">${p.patient.name} ${p.patient.lastName}</a>
+                                                    <p><strong> Edad: </strong> ${p.patient.gender} </p>
+
+                                                </div>
+                                            </li>
+
+                                       </#list>
                                     </ul>
                                 </div>
                             </div>

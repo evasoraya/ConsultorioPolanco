@@ -35,60 +35,42 @@
                     <div class="col-md-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>New patient</h2>
+                                <h2>New Consultation</h2>
 
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_title">
+                                <h2>
+                                    <!--<if canUse>--><a href="/newPatient" role="button" class="btn btn-primary">New patient</a><!--<else><strong>Only ASSISTANT accounts can register new patients</strong></if>-->
+                                </h2>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
 
                                 <br>
-                                <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" method="post" action="/newPatientPost">
+                                <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" method="post" action="/newAppointmentPost">
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name <span class="required">*</span>
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" id="first-name" required="required" name="name" class="form-control col-md-7 col-xs-12">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="patient">Select Patient</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <select name="patient" id="patient" class="select2_group form-control">
+                                                <optgroup label="All Patients">
+                                                    <#list patients as p>
+                                                    <option value="${p.code}">${p.name} ${p.lastName}</option>
+                                                    </#list>
+                                                </optgroup>
+
+                                            </select>
                                         </div>
                                     </div>
+
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Last Name <span class="required">*</span>
-                                        </label>
+                                        <label  class="control-label col-md-3 col-sm-3 col-xs-12" for="insurance">Seguro</label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" id="last-name" name="lastName" required="required" class="form-control col-md-7 col-xs-12">
+                                            <input id="insurance" class="form-control col-md-7 col-xs-12" type="text" name="insurance">
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Cedula</label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="id">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Nacionalidad</label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="nationality">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="birthday" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha Nacimiento</label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input id="birthday" class="form-control col-md-7 col-xs-12" type="date" name="birthdate">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <div id="gender" class="btn-group" data-toggle="buttons">
-                                                <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                                    <input type="radio" name="gender" value="m" data-parsley-multiple="gender"> &nbsp; Male &nbsp;
-                                                </label>
-                                                <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                                    <input type="radio" name="gender" value="f" data-parsley-multiple="gender"> Female
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
+
 
                                     <div class="ln_solid"></div>
                                     <div class="form-group">
@@ -98,6 +80,7 @@
                                             <button type="submit" class="btn btn-success">Submit</button>
                                         </div>
                                     </div>
+
 
                                 </form>
 
@@ -160,11 +143,16 @@
 <script src="vendors/moment/min/moment.min.js"></script>
 <script src="vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
-
+<script src="/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
 <script src="build/js/custom.min.js"></script>
 
 
+
+<tester id="tags_1_tag_autosize_tester" style="position: absolute; top: -9999px; left: -9999px; width: auto; font-size: 13px; font-family: helvetica; font-weight: 400; letter-spacing: 0px; white-space: nowrap;">nknk</tester>
 <!-- Custom Theme Scripts -->
+
+<!-- /jQuery Tags Input -->
+
 
 </body>
 </html>

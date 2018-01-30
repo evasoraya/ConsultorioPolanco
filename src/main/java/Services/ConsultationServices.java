@@ -1,7 +1,6 @@
 package Services;
 
 import Entities.Consultation;
-import Entities.Pacient;
 
 public class ConsultationServices extends GestionDB<Consultation> {
 

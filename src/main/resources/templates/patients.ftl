@@ -41,7 +41,7 @@
                             <div class="x_panel">
                                 <div class="x_title">
                                     <h2>
-                                        <!--<if canUse>--><a href="/new_patient" role="button" class="btn btn-primary">New patient</a><!--<else><strong>Only ASSISTANT accounts can register new patients</strong></if>-->
+                                        <!--<if canUse>--><a href="/newPatient" role="button" class="btn btn-primary">New patient</a><!--<else><strong>Only ASSISTANT accounts can register new patients</strong></if>-->
                                     </h2>
                                     <div class="clearfix"></div>
                                 </div>
@@ -49,16 +49,33 @@
                                     <table id="datatable-responsive" class="table table-hover table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                         <thead>
                                         <tr>
+                                            <th><span style="text-transform: uppercase;"></span>Cedula</th>
                                             <th><span style="text-transform: uppercase;"></span>Nombre</th>
                                             <th><span style="text-transform: uppercase;"></span>Apellido</th>
-                                            <th><span style="text-transform: uppercase;"></span>Seguro</th>
-                                            <th><span style="text-transform: uppercase;"></span>Telefono</th>
-                                            <th><span style="text-transform: uppercase;"></span>Celular</th>
-                                            <th><span style="text-transform: uppercase;"></span>Profesion</th>
+                                            <th><span style="text-transform: uppercase;"></span>Genero</th>
+
+                                            <th><span style="text-transform: uppercase;"></span>Fecha de nacimiento</th>
+                                            <th><span style="text-transform: uppercase;"></span>Nacionalidad</th>
+
 
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        <#list patientList?sort_by("lastName") as patient>
+                                        <tr>
+                                            <td><a href="/patient/${patient.ID}"></a>${patient.ID}</td>
+                                            <td>${patient.name}</td>
+                                            <td>${patient.lastName}</td>
+                                            <td>${patient.gender}</td>
+                                            <td>${patient.birthdate}</td>
+                                            <td>${patient.nationality}</td>
+                                        </tr>
+                                        <#else>
+                                        <tr>
+                                            <th scope="row">empty</th>
+
+                                        </tr>
+                                        </#list>
 
                                         </tbody>
                                     </table>

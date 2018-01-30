@@ -9,15 +9,26 @@ public class Appointment {
     @Id
     @GeneratedValue
     private long code;
-    @OneToOne
-    private Pacient pacient;
+    @ManyToOne
+    private Patient patient;
     private Date date;
-    private String description;
+    private String insurace;
 
-    public Appointment(Pacient pacient, Date date, String description) {
-        this.pacient = pacient;
+
+    public  Appointment(){}
+    public Appointment(Patient patient, Date date, String insurace) {
+        this.patient = patient;
         this.date = date;
-        this.description = description;
+        this.insurace = insurace;
+
+    }
+
+    public String getInsurace() {
+        return insurace;
+    }
+
+    public void setInsurace(String insurace) {
+        this.insurace = insurace;
     }
 
     public long getCode() {
@@ -28,12 +39,12 @@ public class Appointment {
         this.code = code;
     }
 
-    public Pacient getPacient() {
-        return pacient;
+    public Patient getPatient() {
+        return patient;
     }
 
-    public void setPacient(Pacient pacient) {
-        this.pacient = pacient;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
     public Date getDate() {
@@ -44,11 +55,4 @@ public class Appointment {
         this.date = date;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }

@@ -36,12 +36,12 @@
 
                             <div class="x_title">
 
-                                <h2>Patients</h2>
+                                <h2>Appointments</h2>
                             </div>
                             <div class="x_panel">
                                 <div class="x_title">
                                     <h2>
-                                        <!--<if canUse>--><a href="/newPatient" role="button" class="btn btn-primary">New patient</a><!--<else><strong>Only ASSISTANT accounts can register new patients</strong></if>-->
+                                        <!--<if canUse>--><a href="/newAppointment" role="button" class="btn btn-primary">New Appointment</a><!--<else><strong>Only ASSISTANT accounts can register new patients</strong></if>-->
                                     </h2>
                                     <div class="clearfix"></div>
                                 </div>
@@ -51,24 +51,21 @@
                                         <tr>
                                             <th><span style="text-transform: uppercase;"></span>Cedula</th>
                                             <th><span style="text-transform: uppercase;"></span>Nombre</th>
-                                            <th><span style="text-transform: uppercase;"></span>Apellido</th>
-                                            <th><span style="text-transform: uppercase;"></span>Genero</th>
-
-                                            <th><span style="text-transform: uppercase;"></span>Fecha de nacimiento</th>
-                                            <th><span style="text-transform: uppercase;"></span>Nacionalidad</th>
+                                            <th><span style="text-transform: uppercase;"></span>Hora registro</th>
+                                            <th><span style="text-transform: uppercase;"></span>Seguro</th>
 
 
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <#list patientList?sort_by("lastName") as patient>
+                                        <#list appointmentList?sort_by("date") as appointment>
                                         <tr>
-                                            <td><a href="/patient/${patient.ID}"></a>${patient.ID}</td>
-                                            <td>${patient.name}</td>
-                                            <td>${patient.lastName}</td>
-                                            <td>${patient.gender}</td>
-                                            <td>${patient.birthdate}</td>
-                                            <td>${patient.nationality}</td>
+
+                                            <td>${appointment.patient.ID}</td>
+                                            <td>${appointment.patient.name} ${appointment.patient.lastName}</td>
+                                            <td>${appointment.date}</td>
+                                            <td>${appointment.insurace}</td>
+
                                         </tr>
                                         <#else>
                                         <tr>
@@ -144,8 +141,6 @@
 <!-- bootstrap-daterangepicker -->
 <script src="vendors/moment/min/moment.min.js"></script>
 <script src="vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-
-
 <script src="build/js/custom.min.js"></script>
 
 

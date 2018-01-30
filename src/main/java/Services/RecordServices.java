@@ -1,6 +1,5 @@
 package Services;
 
-import Entities.Pacient;
 import Entities.Record;
 
 public class RecordServices extends GestionDB<Record> {

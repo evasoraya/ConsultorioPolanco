@@ -35,7 +35,7 @@
                     <div class="col-md-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>New patient</h2>
+                                <h2>New Consultation</h2>
 
                                 <div class="clearfix"></div>
                             </div>
@@ -45,48 +45,44 @@
                                 <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" method="post" action="/newPatientPost">
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name <span class="required">*</span>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Patient</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <select class="select2_group form-control">
+                                                <optgroup label="WaitListed">
+                                                    <option value="AK">Eva Concepcion</option>
+                                                    <option value="HI">Carlos Nose</option>
+                                                </optgroup>
+                                                <optgroup label="All Patients">
+                                                    <option value="CA">Darlenys</option>
+                                                    <option value="NV">Isaac</option>
+                                                    <option value="OR">Dewyn</option>
+                                                    <option value="WA">Angel</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="caso">Caso <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" id="first-name" required="required" name="name" class="form-control col-md-7 col-xs-12">
+                                            <input type="text" id="caso" required="required" name="caso" class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
+
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Last Name <span class="required">*</span>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Description <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" id="last-name" name="lastName" required="required" class="form-control col-md-7 col-xs-12">
+                                            <textarea type="text" id="description" required="required" name="description" class="form-control col-md-7 col-xs-12"></textarea>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Cedula</label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="id">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Nacionalidad</label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="nationality">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="birthday" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha Nacimiento</label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input id="birthday" class="form-control col-md-7 col-xs-12" type="date" name="birthdate">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <div id="gender" class="btn-group" data-toggle="buttons">
-                                                <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                                    <input type="radio" name="gender" value="m" data-parsley-multiple="gender"> &nbsp; Male &nbsp;
-                                                </label>
-                                                <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                                    <input type="radio" name="gender" value="f" data-parsley-multiple="gender"> Female
-                                                </label>
-                                            </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="prescription">Prescription</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input id="tags_1" type="text" class="tags form-control"  data-tagsinput-init="true" style="display: none;"><div id="tags_1_tagsinput" class="tagsinput" style="width: auto; min-height: 100px; height: 100px;"><span class="tag"><span>social&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><span class="tag"><span>adverts&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><span class="tag"><span>sales&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><span class="tag"><span>nknk&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><div id="tags_1_addTag"><input id="tags_1_tag" value="" data-default="add a tag" style="color: rgb(102, 102, 102); width: 72px;"></div><div class="tags_clear"></div></div>
+                                            <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
                                         </div>
                                     </div>
 
@@ -98,6 +94,7 @@
                                             <button type="submit" class="btn btn-success">Submit</button>
                                         </div>
                                     </div>
+
 
                                 </form>
 
@@ -160,11 +157,35 @@
 <script src="vendors/moment/min/moment.min.js"></script>
 <script src="vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
-
+<script src="/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
 <script src="build/js/custom.min.js"></script>
 
 
+
+<tester id="tags_1_tag_autosize_tester" style="position: absolute; top: -9999px; left: -9999px; width: auto; font-size: 13px; font-family: helvetica; font-weight: 400; letter-spacing: 0px; white-space: nowrap;">nknk</tester>
 <!-- Custom Theme Scripts -->
+<script>
+
+    function onAddTag(tag) {
+        alert("Added a tag: " + tag);
+    }
+    function onRemoveTag(tag) {
+        alert("Removed a tag: " + tag);
+    }
+    function onChangeTag(input, tag) {
+        alert("Changed a tag: " + tag);
+    }
+    $(document).ready(function() {
+        $('#tags_1_tagsinput').tagsInput({
+            width: 'auto'
+        });
+        $('#tags_2_tagsinput').tagsInput({
+            width: 'auto'
+        });
+    });
+</script>
+<!-- /jQuery Tags Input -->
+
 
 </body>
 </html>

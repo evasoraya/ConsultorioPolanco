@@ -3,10 +3,11 @@ package Entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
-public class Pacient {
+public class Patient {
 
     @Id
     @GeneratedValue
@@ -14,7 +15,7 @@ public class Pacient {
     private String ID;
     private String name;
     private String lastName;
-    private Date birthdate;
+    private String birthdate;
     private char gender;
     private String phoneNumber;
     private String province;
@@ -22,7 +23,10 @@ public class Pacient {
     private String direction;
     private String nationality;
 
-    public Pacient(String ID, String name, String lastName, Date birthdate, char gender, String phoneNumber, String province, String city, String direction, String nationality) {
+    public Patient (){
+
+    }
+    public Patient(String ID, String name, String lastName, String birthdate, char gender, String phoneNumber, String province, String city, String direction, String nationality) {
         this.ID = ID;
         this.name = name;
         this.lastName = lastName;
@@ -67,11 +71,11 @@ public class Pacient {
         this.lastName = lastName;
     }
 
-    public Date getBirthdate() {
+    public String getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
     }
 
@@ -122,4 +126,8 @@ public class Pacient {
     public void setNationality(String nationality) {
         this.nationality = nationality;
     }
+
+
+
+
 }
