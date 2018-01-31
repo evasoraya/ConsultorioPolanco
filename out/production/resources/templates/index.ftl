@@ -15,6 +15,10 @@
     <!-- NProgress -->
     <link href="css/nprogress.css" rel="stylesheet">
 
+    <!-- FullCalendar -->
+    <link href="/vendors/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
+    <link href="/vendors/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print">
+
     <!-- Custom Theme Style -->
     <link href="css/custom.min.css" rel="stylesheet">
 
@@ -42,8 +46,7 @@
                             </div>
                             <div class="x_content">
                                 <div class="col-md-9 col-sm-12 col-xs-12">
-
-
+                                    <div id='calendar'></div>
                                 </div>
                                 <div class="col-md-3 col-sm-12 col-xs-12">
                                     <div class="x_title">
@@ -52,21 +55,9 @@
                                         <div class="clearfix"></div>
                                     </div>
                                     <ul class="list-unstyled top_profiles scroll-view">
-                                       <#list patients as p>
 
-                                           <li class="media event">
+                                        <!--LISTA-->
 
-                                                <a class="pull-left border-aero profile_thumb">
-                                                    <i class="fa fa-wheelchair aero"></i>
-                                                </a>
-                                                <div class="media-body">
-                                                    <a  class="title" href="/patientProfile/${p.patient.code}">${p.patient.name} ${p.patient.lastName}</a>
-                                                    <p><strong> Edad: </strong> ${p.patient.gender} </p>
-
-                                                </div>
-                                            </li>
-
-                                       </#list>
                                     </ul>
                                 </div>
                             </div>
@@ -127,6 +118,9 @@
 <script src="vendors/fastclick/lib/fastclick.js"></script>
 <!-- NProgress -->
 <script src="vendors/nprogress/nprogress.js"></script>
+<!-- FullCalendar -->
+<script src="/vendors/moment/min/moment.min.js"></script>
+<script src="/vendors/fullcalendar/dist/fullcalendar.min.js"></script>
 <!-- Chart.js -->
 <script src="vendors/Chart.js/dist/Chart.min.js"></script>
 <!-- jQuery Sparklines -->
