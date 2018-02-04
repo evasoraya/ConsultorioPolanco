@@ -56,7 +56,26 @@
                                     </div>
                                     <ul class="list-unstyled top_profiles scroll-view">
 
-                                        <!--LISTA-->
+                                    <#list patients? sort_by("date") as p>
+
+                                        <li class="media event">
+
+                                            <a class="pull-left border-aero profile_thumb">
+                                                <i class="fa fa-wheelchair aero"></i>
+                                            </a>
+                                            <div class="media-body">
+                                                <a  class="title" href="/patientProfile/${p.patient.code}">${p.patient.name} ${p.patient.lastName}</a>
+                                                <p><strong> Edad: </strong> ${p.patient.gender} </p>
+
+                                            </div>
+                                        </li>
+                                    <#else>
+                                        <div class="media-body">
+                                            <p><strong> empty </p>
+
+                                        </div>
+
+                                    </#list>
 
                                     </ul>
                                 </div>

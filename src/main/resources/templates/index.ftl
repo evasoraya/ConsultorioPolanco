@@ -56,7 +56,7 @@
                                     </div>
                                     <ul class="list-unstyled top_profiles scroll-view">
 
-                                    <#list patients as p>
+                                    <#list patients? sort_by("date") as p>
 
                                         <li class="media event">
 
@@ -69,6 +69,11 @@
 
                                             </div>
                                         </li>
+                                    <#else>
+                                        <div class="media-body">
+                                            <p><strong> empty </p>
+
+                                        </div>
 
                                     </#list>
 

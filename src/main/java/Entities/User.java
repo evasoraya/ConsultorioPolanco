@@ -1,8 +1,11 @@
 package Entities;
 
+import Services.UserServices;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.List;
 
 @Entity
 public class User {
@@ -10,15 +13,14 @@ public class User {
     @Id
     @GeneratedValue
     private long code;
+    private String name;
+    private String lastName;
     private String username;
     private String password;
     private String email;
+    private String role;
 
-    public User(String username, String password, String email) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-    }
+    public  User(){}
 
     public long getCode() {
         return code;
@@ -26,6 +28,22 @@ public class User {
 
     public void setCode(long code) {
         this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getUsername() {
@@ -50,5 +68,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

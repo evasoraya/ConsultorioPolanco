@@ -18,6 +18,9 @@ import static spark.debug.DebugScreen.enableDebugScreen;
 
 public class main {
 
+    private static final String SESSION_NAME = "username";
+    private static final String COOKIE_NAME = "user_cookie";
+
     public static void main(String[] args) {
         enableDebugScreen();
         staticFileLocation("/");
@@ -29,26 +32,26 @@ public class main {
 
         BootStrapService.getInstancia().init();
 
-        User user = new User("da", "klk", "ok");
-        UserServices.getInstancia().crear(user);
+
         get("/", (request, response) -> {
+            User usuario = request.session().attribute(SESSION_NAME);
+            if (usuario == null ) response.redirect("/login");
+
             ArrayList<Appointment> todayList = new ArrayList<>();
             Date d = new Date();
             List<Appointment> list = AppointmentServices.getInstancia().findAll();
-
+            System.out.println("jjjj"+list.size());
 
             list.sort((o1,o2) -> o1.getDate().compareTo(o2.getDate()));
-
-
-
             Map<String, Object> attributes = new HashMap<>();
-
 
             attributes.put("patients", list);
             return new ModelAndView(attributes, "index.ftl");
         }, freeMarkerEngine);
 
         get("/patient", (request, response) -> {
+            User usuario = request.session().attribute(SESSION_NAME);
+            if (usuario == null ) response.redirect("/login");
 
             Map<String, Object> attributes = new HashMap<>();
 
@@ -56,26 +59,51 @@ public class main {
             attributes.put("patientList",PatientServices.getInstancia().findAll());
             return new ModelAndView(attributes, "patients.ftl");
         }, freeMarkerEngine);
+
         get("/newPatient", (request, response) -> {
+            User usuario = request.session().attribute(SESSION_NAME);
+            if (usuario == null ) response.redirect("/login");
 
             Map<String, Object> attributes = new HashMap<>();
             return new ModelAndView(attributes, "newPatient.ftl");
         }, freeMarkerEngine);
 
         get("/newConsultation", (request, response) -> {
+            User usuario = request.session().attribute(SESSION_NAME);
+            if (usuario == null ) response.redirect("/login");
 
             Map<String, Object> attributes = new HashMap<>();
             return new ModelAndView(attributes, "newConsultation.ftl");
         }, freeMarkerEngine);
 
+        get("/newUser", (request, response) -> {
+            User usuario = request.session().attribute(SESSION_NAME);
+            if (usuario == null ) response.redirect("/login");
+
+            Map<String, Object> attributes = new HashMap<>();
+            return new ModelAndView(attributes, "newUSer.ftl");
+        }, freeMarkerEngine);
+
         get("/consultation", (request, response) -> {
+            User usuario = request.session().attribute(SESSION_NAME);
+            if (usuario == null ) response.redirect("/login");
 
             Map<String, Object> attributes = new HashMap<>();
             attributes.put("consultationList", ConsultationServices.getInstancia().findAll());
             return new ModelAndView(attributes, "consultation.ftl");
         }, freeMarkerEngine);
+        get("user", (request, response) -> {
+            User usuario = request.session().attribute(SESSION_NAME);
+            if (usuario == null ) response.redirect("/login");
+
+            Map<String, Object> attributes = new HashMap<>();
+            attributes.put("userList", UserServices.getInstancia().findAll());
+            return new ModelAndView(attributes, "users.ftl");
+        }, freeMarkerEngine);
 
         get("/appointment", (request, response) -> {
+            User usuario = request.session().attribute(SESSION_NAME);
+            if (usuario == null ) response.redirect("/login");
 
             Map<String, Object> attributes = new HashMap<>();
             List<Appointment> list = AppointmentServices.getInstancia().findAll();
@@ -86,12 +114,16 @@ public class main {
         }, freeMarkerEngine);
 
         get("/newAppointment", (request, response) -> {
+            User usuario = request.session().attribute(SESSION_NAME);
+            if (usuario == null ) response.redirect("/login");
 
             Map<String, Object> attributes = new HashMap<>();
             attributes.put("patients", PatientServices.getInstancia().findAll());
             return new ModelAndView(attributes, "newAppointment.ftl");
         }, freeMarkerEngine);
         get("/patientProfile/:id", (request, response) -> {
+            User usuario = request.session().attribute(SESSION_NAME);
+            if (usuario == null ) response.redirect("/login");
 
             Patient p = PatientServices.getInstancia().find(Long.parseLong(request.params("id")));
 
@@ -104,6 +136,7 @@ public class main {
 
 
         post("/newPatientPost", ((request, response) -> {
+
             System.out.println("entrooo");
             Patient p = new Patient();
             p.setName(request.queryParams("name"));
@@ -121,11 +154,26 @@ public class main {
             return "Registrado!";
         }));
 
+        post("/newUserPost", ((request, response) -> {
+            System.out.println("entrooo");
+            User user = new User();
+
+            user.setName(request.queryParams("name"));
+            user.setLastName(request.queryParams("lastName"));
+            user.setEmail(request.queryParams("email"));
+            user.setUsername(request.queryParams("username"));
+            user.setPassword(request.queryParams("password"));
+            user.setRole(request.queryParams("role"));
+
+
+            UserServices.getInstancia().crear(user);
+
+            response.redirect("/user");
+            return "Registrado!";
+        }));
+
         post("/newAppointmentPost", ((request, response) -> {
-
-
             Patient p = PatientServices.getInstancia().find(Long.parseLong(request.queryParams("patient")));
-
 
             Appointment a = new Appointment();
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -142,9 +190,36 @@ public class main {
             response.redirect("/appointment");
             return "Registrado!";
         }));
+        get("/login", (req, res) -> new ModelAndView(null, "login.ftl"), freeMarkerEngine);
+
+        post("/login", (req, res) -> {
+            String username = req.queryParams("username");
+
+            if(autentificar(username,req.queryParams("password"))){
+                res.cookie(COOKIE_NAME, username, 3600);
+                User user = UserServices.getInstancia().findByUsername(username);
+                req.session().attribute(SESSION_NAME, user);
+                res.redirect("/");
+            }else{
+                res.redirect("/login");
+            }
+            return null;
+        });
+        get("/logout",(req,res)->{
+            req.session().removeAttribute(SESSION_NAME);
+            res.removeCookie(COOKIE_NAME);
+            res.redirect("/login");
+            return null;
+        });
 
 
 
 
     }
+    private static boolean autentificar(String username, String password){
+        User u = UserServices.getInstancia().findByUsername(username);
+        if(u != null && u.getPassword().equals(password)) return true;
+        return false;
+    }
+
 }
