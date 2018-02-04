@@ -53,6 +53,7 @@ public class main {
             User usuario = request.session().attribute(SESSION_NAME);
             if (usuario == null ) response.redirect("/login");
 
+
             Map<String, Object> attributes = new HashMap<>();
 
             System.out.println(PatientServices.getInstancia().findAll().size());
@@ -64,7 +65,11 @@ public class main {
             User usuario = request.session().attribute(SESSION_NAME);
             if (usuario == null ) response.redirect("/login");
 
+
             Map<String, Object> attributes = new HashMap<>();
+
+            System.out.println(PatientServices.getInstancia().findAll().size());
+            attributes.put("patientList",PatientServices.getInstancia().findAll());
             return new ModelAndView(attributes, "newPatient.ftl");
         }, freeMarkerEngine);
 
@@ -137,20 +142,40 @@ public class main {
 
         post("/newPatientPost", ((request, response) -> {
 
-            System.out.println("entrooo");
+
             Patient p = new Patient();
             p.setName(request.queryParams("name"));
             p.setLastName(request.queryParams("lastName"));
-            p.setID(request.queryParams("id"));
-
-            p.setBirthdate(request.queryParams("birthdate").split(" ")[0]);
-            System.out.println(request.queryParams("birthdate").split(" ")[0]);
-
+            p.setID(request.queryParams("cedula"));
+            p.setBirthdate(request.queryParams("birthdate"));
             p.setGender(request.queryParams("gender").charAt(0));
-            p.setNationality(request.queryParams("nationality"));
+
+            if(request.queryParams("nacionalidad").equals("1")){
+                p.setNationality(request.queryParams("nacionalidad2"));
+            }
+            else{
+                p.setNationality(request.queryParams("nacionalidad"));
+            }
+
+            p.setCellphone(request.queryParams("celular"));
+            p.setPhoneNumber(request.queryParams("telefono"));
+            p.setDirection(request.queryParams("direccion"));
+            p.setCity(request.queryParams("ciudad"));
+            p.setProvince(request.queryParams("provincia"));
+            p.setReference(request.queryParams("quienRefirio"));
+            p.setEmergencyName(request.queryParams("emergenciaNombre"));
+            p.setEmergencyPhoneNumber(request.queryParams("emergenciaTelefono"));
+            if(request.queryParams("planMedico").equals("Privado")){
+                p.setPrivatePatient(true);
+            }
+            else{
+                p.setPrivatePatient(false);
+            }
+            p.setTutor(request.queryParams("encargadoMenor"));
+            p.setTutorPhoneNumber(request.queryParams("encargadoTelefono"));
             PatientServices.getInstancia().crear(p);
 
-            response.redirect("/patient");
+            response.redirect("/patients");
             return "Registrado!";
         }));
 

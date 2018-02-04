@@ -12,29 +12,36 @@
                 <img src="images/img.jpg" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
-                <span>Welcome,</span>
-                <h2>Maria Polanco</h2>
+                <span>Bienvenida,</span>
+                <h2>Dra. Polanco</h2>
             </div>
         </div>
         <!-- /menu profile quick info -->
 
-        <br />
+        <br/>
 
         <!-- sidebar menu -->
         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
 
                 <ul class="nav side-menu">
-                    <li><a href="/"><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                    <li><a href="/"><i class="fa fa-home"></i> Inicio </a>
 
                     </li>
-                    <li><a href="/patient"><i class="fa fa-edit"></i> Patients <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-user"></i> Pacientes <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="/newPatient">Nuevo Paciente</a></li>
+                            <li><a href="/patients">Listado de Pacientes</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/consultation"><i class="fa fa-edit"></i> Consultas <span class="fa fa-chevron-down"></span></a>
 
                     </li>
-                    <li><a href="/consultation"><i class="fa fa-desktop"></i> Consulting <span class="fa fa-chevron-down"></span></a>
-
-                    </li>
-                    <li><a href="/appointment"><i class="fa fa-table"></i> Appointments <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-calendar"></i> Citas <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="/newAppointment">Nueva Cita</a></li>
+                            <li><a href="/appointment">Listado de Citas</a></li>
+                        </ul>
                     </li>
 
                 </ul>

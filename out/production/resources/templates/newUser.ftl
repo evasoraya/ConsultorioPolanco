@@ -77,6 +77,17 @@
                                         </div>
                                     </div>
 
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="patient">Select Patient</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <select name="role" id="role" class="select2_group form-control">
+
+                                                <option value="secretaria">Secretaria</option>
+                                                <option value="doctora">Doctora</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
 
                                     <div class="ln_solid"></div>
                                     <div class="form-group">

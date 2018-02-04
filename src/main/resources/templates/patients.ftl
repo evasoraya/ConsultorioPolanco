@@ -34,17 +34,9 @@
                     <div class="col-md-12">
                         <div class="x_panel">
 
-                            <div class="x_title">
+                            <h2><strong>Pacientes</strong></h2>
 
-                                <h2>Patients</h2>
-                            </div>
                             <div class="x_panel">
-                                <div class="x_title">
-                                    <h2>
-                                        <!--<if canUse>--><a href="/newPatient" role="button" class="btn btn-primary">New patient</a><!--<else><strong>Only ASSISTANT accounts can register new patients</strong></if>-->
-                                    </h2>
-                                    <div class="clearfix"></div>
-                                </div>
                                 <div class="x_content">
                                     <table id="datatable-responsive" class="table table-hover table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                         <thead>

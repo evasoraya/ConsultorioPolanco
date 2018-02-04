@@ -18,25 +18,40 @@ public class Patient {
     private String birthdate;
     private char gender;
     private String phoneNumber;
+    private String cellphone;
     private String province;
     private String city;
     private String direction;
     private String nationality;
+    private String reference;
+    private String emergencyName;
+    private String emergencyPhoneNumber;
+    private boolean privatePatient; //Falso si tiene seguro
+    private String tutor;
+    private String tutorPhoneNumber;
 
     public Patient (){
 
     }
-    public Patient(String ID, String name, String lastName, String birthdate, char gender, String phoneNumber, String province, String city, String direction, String nationality) {
+
+    public Patient(String ID, String name, String lastName, String birthdate, char gender, String phoneNumber, String cellphone, String province, String city, String direction, String nationality, String reference, String emergencyName, String emergencyPhoneNumber, boolean privatePatient, String tutor, String tutorPhoneNumber) {
         this.ID = ID;
         this.name = name;
         this.lastName = lastName;
         this.birthdate = birthdate;
         this.gender = gender;
         this.phoneNumber = phoneNumber;
+        this.cellphone = cellphone;
         this.province = province;
         this.city = city;
         this.direction = direction;
         this.nationality = nationality;
+        this.reference = reference;
+        this.emergencyName = emergencyName;
+        this.emergencyPhoneNumber = emergencyPhoneNumber;
+        this.privatePatient = privatePatient;
+        this.tutor = tutor;
+        this.tutorPhoneNumber = tutorPhoneNumber;
     }
 
     public long getCode() {
@@ -127,7 +142,59 @@ public class Patient {
         this.nationality = nationality;
     }
 
+    public String getCellphone() {
+        return cellphone;
+    }
 
+    public void setCellphone(String cellphone) {
+        this.cellphone = cellphone;
+    }
 
+    public String getReference() {
+        return reference;
+    }
 
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
+
+    public String getEmergencyName() {
+        return emergencyName;
+    }
+
+    public void setEmergencyName(String emergencyName) {
+        this.emergencyName = emergencyName;
+    }
+
+    public String getEmergencyPhoneNumber() {
+        return emergencyPhoneNumber;
+    }
+
+    public void setEmergencyPhoneNumber(String emergencyPhoneNumber) {
+        this.emergencyPhoneNumber = emergencyPhoneNumber;
+    }
+
+    public boolean isPrivatePatient() {
+        return privatePatient;
+    }
+
+    public void setPrivatePatient(boolean privatePatient) {
+        this.privatePatient = privatePatient;
+    }
+
+    public String getTutor() {
+        return tutor;
+    }
+
+    public void setTutor(String tutor) {
+        this.tutor = tutor;
+    }
+
+    public String getTutorPhoneNumber() {
+        return tutorPhoneNumber;
+    }
+
+    public void setTutorPhoneNumber(String tutorPhoneNumber) {
+        this.tutorPhoneNumber = tutorPhoneNumber;
+    }
 }
