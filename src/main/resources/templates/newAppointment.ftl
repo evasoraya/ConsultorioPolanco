@@ -6,18 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doctora Polanco</title>
 
-    <link href="css/index.css" rel="stylesheet">
+    <link href="/css/index.css" rel="stylesheet">
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="css/nprogress.css" rel="stylesheet">
+    <link href="/css/nprogress.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="css/custom.min.css" rel="stylesheet">
+    <link href="/css/custom.min.css" rel="stylesheet">
 
+    <!--FullCalendar-->
+    <link href="/vendors/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
+    <link href="/vendors/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print">
+
+
+    <link href="/css/newAppointment.css" rel="stylesheet">
 </head>
 <body class="nav-md">
 <div class="container body">
@@ -31,64 +37,26 @@
         <!-- page content -->
         <div class="right_col" role="main">
             <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3>Calendario</h3>
+                    </div>
+
+                </div>
+
+                <div class="clearfix"></div>
+
                 <div class="row">
                     <div class="col-md-12">
                         <div class="x_panel">
-                            <div class="x_title">
-                                <h2>New Consultation</h2>
-
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="x_title">
-                                <h2>
-                                    <!--<if canUse>--><a href="/newPatient" role="button" class="btn btn-primary">New patient</a><!--<else><strong>Only ASSISTANT accounts can register new patients</strong></if>-->
-                                </h2>
-                                <div class="clearfix"></div>
-                            </div>
                             <div class="x_content">
 
-                                <br>
-                                <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" method="post" action="/newAppointmentPost">
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="patient">Select Patient</label>
-                                        <div class="col-md-9 col-sm-9 col-xs-12">
-                                            <select name="patient" id="patient" class="select2_group form-control">
-                                                <optgroup label="All Patients">
-                                                    <#list patients as p>
-                                                    <option value="${p.code}">${p.name} ${p.lastName}</option>
-                                                    </#list>
-                                                </optgroup>
-
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label  class="control-label col-md-3 col-sm-3 col-xs-12" for="insurance">Seguro</label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input id="insurance" class="form-control col-md-7 col-xs-12" type="text" name="insurance">
-                                        </div>
-                                    </div>
-
-
-                                    <div class="ln_solid"></div>
-                                    <div class="form-group">
-                                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                            <button class="btn btn-primary" type="button">Cancel</button>
-                                            <button class="btn btn-primary" type="reset">Reset</button>
-                                            <button type="submit" class="btn btn-success">Submit</button>
-                                        </div>
-                                    </div>
-
-
-                                </form>
+                                <div id='calendar'></div>
 
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
         <!-- /page content -->
@@ -106,46 +74,129 @@
     </div>
 </div>
 
+<!-- calendar modal -->
+<div id="CalenderModalNew" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Nueva Cita</h4>
+            </div>
+            <div class="modal-body">
+                <div id="testmodal" style="padding: 5px 20px;">
+                    <form id="antoform" class="form-horizontal calender" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Paciente</label>
+                            <div class="col-sm-9">
+                                <select name="patient" id="patient" class="select2_group form-control">
+                                    <optgroup label="Todos los Pacientes">
+                                    <#list patients as p>
+                                        <option value="${p.code}">${p.name} ${p.lastName}</option>
+                                    </#list>
+                                    </optgroup>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Description</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" style="height:55px;" id="descr" name="descr"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary antosubmit">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="CalenderModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel2">Edit Calendar Entry</h4>
+            </div>
+            <div class="modal-body">
+
+                <div id="testmodal2" style="padding: 5px 20px;">
+                    <form id="antoform2" class="form-horizontal calender" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Title</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="title2" name="title2">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Description</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" style="height:55px;" id="descr2" name="descr"></textarea>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default antoclose2" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary antosubmit2">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="fc_create" data-toggle="modal" data-target="#CalenderModalNew"></div>
+<div id="fc_edit" data-toggle="modal" data-target="#CalenderModalEdit"></div>
+
 <!-- jQuery -->
-<script src="vendors/jquery/dist/jquery.min.js"></script>
+<script src="/vendors/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap -->
-<script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- FastClick -->
-<script src="vendors/fastclick/lib/fastclick.js"></script>
+<script src="/vendors/fastclick/lib/fastclick.js"></script>
 <!-- NProgress -->
-<script src="vendors/nprogress/nprogress.js"></script>
+<script src="/vendors/nprogress/nprogress.js"></script>
 <!-- Chart.js -->
-<script src="vendors/Chart.js/dist/Chart.min.js"></script>
+<script src="/vendors/Chart.js/dist/Chart.min.js"></script>
 <!-- jQuery Sparklines -->
-<script src="vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+<script src="/vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
 <!-- morris.js -->
-<script src="vendors/raphael/raphael.min.js"></script>
-<script src="vendors/morris.js/morris.min.js"></script>
+<script src="/vendors/raphael/raphael.min.js"></script>
+<script src="/vendors/morris.js/morris.min.js"></script>
 <!-- gauge.js -->
-<script src="vendors/gauge.js/dist/gauge.min.js"></script>
+<script src="/vendors/gauge.js/dist/gauge.min.js"></script>
 <!-- bootstrap-progressbar -->
-<script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<script src="/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
 <!-- Skycons -->
-<script src="vendors/skycons/skycons.js"></script>
+<script src="/vendors/skycons/skycons.js"></script>
 <!-- Flot -->
-<script src="vendors/Flot/jquery.flot.js"></script>
-<script src="vendors/Flot/jquery.flot.pie.js"></script>
-<script src="vendors/Flot/jquery.flot.time.js"></script>
-<script src="vendors/Flot/jquery.flot.stack.js"></script>
-<script src="vendors/Flot/jquery.flot.resize.js"></script>
+<script src="/vendors/Flot/jquery.flot.js"></script>
+<script src="/vendors/Flot/jquery.flot.pie.js"></script>
+<script src="/vendors/Flot/jquery.flot.time.js"></script>
+<script src="/vendors/Flot/jquery.flot.stack.js"></script>
+<script src="/vendors/Flot/jquery.flot.resize.js"></script>
 <!-- Flot plugins -->
-<script src="vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-<script src="vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
-<script src="vendors/flot.curvedlines/curvedLines.js"></script>
+<script src="/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+<script src="/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+<script src="/vendors/flot.curvedlines/curvedLines.js"></script>
 <!-- DateJS -->
-<script src="vendors/DateJS/build/date.js"></script>
+<script src="/vendors/DateJS/build/date.js"></script>
 <!-- bootstrap-daterangepicker -->
-<script src="vendors/moment/min/moment.min.js"></script>
-<script src="vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="/vendors/moment/min/moment.min.js"></script>
+<script src="/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
 <script src="/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
-<script src="build/js/custom.min.js"></script>
+<script src="/build/js/custom.min.js"></script>
 
+<!-- FullCalendar -->
+<script src="/vendors/moment/min/moment.min.js"></script>
+<script src="/vendors/fullcalendar/dist/fullcalendar.min.js"></script>
 
 
 <tester id="tags_1_tag_autosize_tester" style="position: absolute; top: -9999px; left: -9999px; width: auto; font-size: 13px; font-family: helvetica; font-weight: 400; letter-spacing: 0px; white-space: nowrap;">nknk</tester>
