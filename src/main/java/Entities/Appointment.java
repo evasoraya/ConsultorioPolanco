@@ -11,24 +11,34 @@ public class Appointment {
     private long code;
     @ManyToOne
     private Patient patient;
-    private Date date;
-    private String insurace;
+    private String date;
+    private String description;
+    //En caso que no sea un paciente:
+    private String name;
+    private String telefono;
 
 
     public  Appointment(){}
-    public Appointment(Patient patient, Date date, String insurace) {
+    public Appointment(Patient patient, String date, String description) {
         this.patient = patient;
         this.date = date;
-        this.insurace = insurace;
+        this.description = description;
 
     }
 
-    public String getInsurace() {
-        return insurace;
+    public Appointment(String date, String description, String name, String telefono) {
+        this.date = date;
+        this.description = description;
+        this.name = name;
+        this.telefono = telefono;
     }
 
-    public void setInsurace(String insurace) {
-        this.insurace = insurace;
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public long getCode() {
@@ -47,12 +57,27 @@ public class Appointment {
         this.patient = patient;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
 }
