@@ -32,6 +32,14 @@ public class main {
 
         BootStrapService.getInstancia().init();
 
+       /* User u = new User();
+       u.setUsername("eva");
+        u.setName("eva");
+        u.setLastName("eva");
+        u.setEmail("eva@eva.com");
+        u.setRole("doctora");
+        u.setPassword("eva");
+        UserServices.getInstancia().crear(u);*/
 
         get("/", (request, response) -> {
             User usuario = request.session().attribute(SESSION_NAME);
@@ -40,7 +48,6 @@ public class main {
             ArrayList<Appointment> todayList = new ArrayList<>();
             Date d = new Date();
             List<Appointment> list = AppointmentServices.getInstancia().findAll();
-            System.out.println("jjjj"+list.size());
 
             list.sort((o1,o2) -> o1.getDate().compareTo(o2.getDate()));
             Map<String, Object> attributes = new HashMap<>();
@@ -175,7 +182,7 @@ public class main {
             p.setTutorPhoneNumber(request.queryParams("encargadoTelefono"));
             PatientServices.getInstancia().crear(p);
 
-            response.redirect("/patients");
+            response.redirect("/patient");
             return "Registrado!";
         }));
 
@@ -198,21 +205,32 @@ public class main {
         }));
 
         post("/newAppointmentPost", ((request, response) -> {
-            Patient p = PatientServices.getInstancia().find(Long.parseLong(request.queryParams("patient")));
+
+
+
 
             Appointment a = new Appointment();
-            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            Date date = new Date();
-            System.out.println(date);
-            a.setDate(date);
 
 
-            a.setPatient(p);
-            a.setInsurace(request.queryParams("insurance"));
+            System.out.println(request.queryParams("date"));
+            if(request.queryParams("newP").equals("false")){
 
+
+                Patient p = PatientServices.getInstancia().find(Long.parseLong(request.queryParams("codigo")));
+                a.setPatient(p);
+            }
+            else{
+
+               a.setName(request.queryParams("nombre"));
+                a.setTelefono(request.queryParams("telefono"));
+            }
+
+           a.setDescription(request.queryParams("description"));
+            a.setDate(request.queryParams("date"));
             AppointmentServices.getInstancia().crear(a);
 
-            response.redirect("/appointment");
+            System.out.println("laa");
+            response.redirect("/newAppointment");
             return "Registrado!";
         }));
         get("/login", (req, res) -> new ModelAndView(null, "login.ftl"), freeMarkerEngine);

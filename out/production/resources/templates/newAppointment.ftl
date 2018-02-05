@@ -24,6 +24,14 @@
 
 
     <link href="/css/newAppointment.css" rel="stylesheet">
+
+
+    <!-- iCheck -->
+    <link href="/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+    <!-- Select2 -->
+    <link href="/vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+
 </head>
 <body class="nav-md">
 <div class="container body">
@@ -87,9 +95,17 @@
                 <div id="testmodal" style="padding: 5px 20px;">
                     <form id="antoform" class="form-horizontal calender" role="form">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Paciente</label>
+                            <div class="checkbox col-sm-6 control-label">
+                                <label>
+                                    <input type="checkbox" id="newPatientCB" class="flat">Nuevo Paciente
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="noNewPatient">
+                            <label for="title" class="col-sm-3 control-label">Paciente</label>
                             <div class="col-sm-9">
-                                <select name="patient" id="patient" class="select2_group form-control">
+                                <select id="title" name="title" class="select2_group form-control">
                                     <optgroup label="Todos los Pacientes">
                                     <#list patients as p>
                                         <option value="${p.code}">${p.name} ${p.lastName}</option>
@@ -99,8 +115,26 @@
                                 </select>
                             </div>
                         </div>
+
+                        <div id="newPatient" hidden>
+                            <div class="form-group">
+                                <label for="nameNew" class="col-sm-3 control-label">Nombre</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" id="nameNew" name="nameNew"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phoneNumberNew" class="col-sm-3 control-label">Teléfono</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control"  id="phoneNumberNew" name="phoneNumberNew"/>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Description</label>
+                            <label class="col-sm-3 control-label">Descripción</label>
                             <div class="col-sm-9">
                                 <textarea class="form-control" style="height:55px;" id="descr" name="descr"></textarea>
                             </div>
@@ -192,15 +226,22 @@
 <script src="/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
 <script src="/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
-<script src="/build/js/custom.min.js"></script>
+<script src="/build/js/custom.js"></script>
 
 <!-- FullCalendar -->
 <script src="/vendors/moment/min/moment.min.js"></script>
 <script src="/vendors/fullcalendar/dist/fullcalendar.min.js"></script>
 
+<!-- jQuery Tags Input -->
+<script src="/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
 
+<!-- Select2 -->
+<script src="/vendors/select2/dist/js/select2.full.min.js"></script>
+
+<script src="/js/index.js"></script>
 <tester id="tags_1_tag_autosize_tester" style="position: absolute; top: -9999px; left: -9999px; width: auto; font-size: 13px; font-family: helvetica; font-weight: 400; letter-spacing: 0px; white-space: nowrap;">nknk</tester>
 <!-- Custom Theme Scripts -->
+
 
 <!-- /jQuery Tags Input -->
 

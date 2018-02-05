@@ -2392,13 +2392,11 @@ if (typeof NProgress != 'undefined') {
 					categoryClass;
 
 				var calendar = $('#calendar').fullCalendar({
-
 				  header: {
 					left: 'prev,next today',
 					center: 'title',
 					right: 'month,agendaWeek,agendaDay,listMonth'
 				  },
-					locale: 'es',
 				  selectable: true,
 				  selectHelper: true,
 				  select: function(start, end, allDay) {
@@ -2409,11 +2407,21 @@ if (typeof NProgress != 'undefined') {
 
 					$(".antosubmit").on("click", function() {
 						var newP;
+                        var title;
+                        var telefono;
 						if(document.getElementById("newPatientCB").checked){
 							newP = "true";
+                            title = $("nameNew").val();
+
+						}else{
+							newP = "false";
+                            title = $("#title option:selected").text();
+
 						}
-					  var title = $("#title option:selected").text();
-					  var code =  $("#title").val();
+                        var code =  $("#title").val();
+                        telefono = $("#phoneNumberNew").val();
+
+
 					  var descripcion = $("#descr").val();
                         var start2 = moment(event.start).format("YYYY-MM-DD[T]hh:mm:SS");
 					  if (end) {
@@ -2434,8 +2442,8 @@ if (typeof NProgress != 'undefined') {
 
                          $.ajax({
                               url: '/newAppointmentPost',
-                              data: 'type=new&title='+code+'&start='+start2+'&description='+descripcion+
-                              '&allDay='+event.allDay+'&newP='+newP,
+                              data: 'type=new&codigo='+code+'&date='+start2+'&description='+descripcion+
+                              '&newP='+newP+'&nombre='+title+'&telefono='+telefono,
                               type: 'POST',
                               dataType: 'json',
                               success: function(response){
@@ -2451,10 +2459,9 @@ if (typeof NProgress != 'undefined') {
                           });
 					  }
 
-					  $('#title').text('');
+					  $('#title').val('');
 
-					  cal
-						  endar.fullCalendar('unselect');
+					  calendar.fullCalendar('unselect');
 
 					  $('.antoclose').click();
 
