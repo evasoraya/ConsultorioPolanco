@@ -129,17 +129,24 @@
                                     <div>
                                         <div class="container">
                                             <div class="row">
-                                                <div class="col-6">
-                                                    <strong ><h3>Nombre: </h3></strong> <h4>${patient.name}</h4>
-                                                    <strong ><h3>Apellido: </h3></strong> <h4>${patient.lastName}</h4>
-                                                    <strong ><h3>Condiciones: </h3></strong> <h2></h2>
-                                                    <strong ><h3>Fecha de nacimiento: </h3></strong> <h4>${patient.birthdate}</h4>
+                                                <div class="col-md-6">
+                                                    <h4><strong >Nombre: </strong> ${patient.name}</h4>
+                                                    <h4><strong >Apellido: </strong> ${patient.lastName}</h4>
+                                                    <h4><strong >Condiciones: </strong> </h4>
+                                                    <h4><strong >Fecha de nacimiento: </strong> ${patient.birthdate}</h4>
+                                                    <h4><strong >Cedula: </strong> ${patient.ID}</h4>
+                                                    <h4><strong >Numero de telefono: </strong> ${patient.phoneNumber}</h4>
+                                                    <h4><strong >Numero de celular: </strong> ${patient.cellphone}</h4>
                                                 </div>
-                                                <div class="col-6">
-                                                    <strong ><h3>Cedula: </h3></strong> <h4>${patient.ID}</h4>
-                                                    <strong ><h3>Numero de telefono: </h3></strong> <h4>$</h4>
-                                                    <strong ><h3>Genero: </h3></strong> <h4>${patient.gender}</h4>
-                                                    <strong ><h3>Nacionalidad: </h3></strong> <h4>${patient.nationality}</h4>
+                                                <div class="col-md-6">
+                                                    <h4><strong >Genero: </strong> <#if patient.gender == "f"> Femenino  <#else> Masculino </#if></h4>
+                                                    <h4><strong >Nacionalidad: </strong> ${patient.nationality}</h4>
+                                                    <h4><strong>Provincia: </strong> ${patient.province}</h4>
+                                                    <h4><strong>City: </strong> ${patient.city}</h4>
+                                                    <h4><strong>Direccion: </strong> ${patient.direction}</h4>
+                                                    <h4><strong>Referenciado por: </strong> ${patient.reference}</h4>
+                                                    <h4><strong>Contacto de emergencia: </strong> ${patient.emergencyName} ${patient.emergencyPhoneNumber} </h4>
+                                                    <h4><strong>Tutor: </strong> ${patient.tutor} ${patient.tutorPhoneNumber}</h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -147,11 +154,9 @@
 
                                     <div class="" role="tabpanel" data-example-id="togglable-tabs">
                                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                                            <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Recent Activity</a>
+                                            <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Historial de consultas</a>
                                             </li>
-                                            <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Projects Worked on</a>
-                                            </li>
-                                            <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Profile</a>
+                                            <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Realizar consulta</a>
                                             </li>
                                         </ul>
                                         <div id="myTabContent" class="tab-content">
@@ -159,70 +164,24 @@
 
                                                 <!-- start recent activity -->
                                                 <ul class="messages">
-                                                    <li>
+
+                                                    <#list consultationList as c>
+                                                        <li>
                                                         <img src="/images/img.jpg" class="avatar" alt="Avatar">
                                                         <div class="message_date">
-                                                            <h3 class="date text-info">24</h3>
-                                                            <p class="month">May</p>
+                                                            <h4 class="date text-info">${c.appointment.date}</h4>
+
                                                         </div>
                                                         <div class="message_wrapper">
-                                                            <h4 class="heading">Desmond Davison</h4>
-                                                            <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
+                                                            <h4 class="heading">${c.tipoCaso}</h4>
+                                                            <blockquote class="message">${c.description}</blockquote>
+                                                            <p>${c.prescription}</p>
                                                             <br>
-                                                            <p class="url">
-                                                                <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                                                                <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
-                                                            </p>
+
                                                         </div>
                                                     </li>
-                                                    <li>
-                                                        <img src="/images/img.jpg" class="avatar" alt="Avatar">
-                                                        <div class="message_date">
-                                                            <h3 class="date text-error">21</h3>
-                                                            <p class="month">May</p>
-                                                        </div>
-                                                        <div class="message_wrapper">
-                                                            <h4 class="heading">Brian Michaels</h4>
-                                                            <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                                                            <br>
-                                                            <p class="url">
-                                                                <span class="fs1" aria-hidden="true" data-icon=""></span>
-                                                                <a href="#" data-original-title="">Download</a>
-                                                            </p>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <img src="/images/img.jpg" class="avatar" alt="Avatar">
-                                                        <div class="message_date">
-                                                            <h3 class="date text-info">24</h3>
-                                                            <p class="month">May</p>
-                                                        </div>
-                                                        <div class="message_wrapper">
-                                                            <h4 class="heading">Desmond Davison</h4>
-                                                            <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                                                            <br>
-                                                            <p class="url">
-                                                                <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                                                                <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
-                                                            </p>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <img src="/images/img.jpg" class="avatar" alt="Avatar">
-                                                        <div class="message_date">
-                                                            <h3 class="date text-error">21</h3>
-                                                            <p class="month">May</p>
-                                                        </div>
-                                                        <div class="message_wrapper">
-                                                            <h4 class="heading">Brian Michaels</h4>
-                                                            <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                                                            <br>
-                                                            <p class="url">
-                                                                <span class="fs1" aria-hidden="true" data-icon=""></span>
-                                                                <a href="#" data-original-title="">Download</a>
-                                                            </p>
-                                                        </div>
-                                                    </li>
+                                                    </#list>
+
 
                                                 </ul>
                                                 <!-- end recent activity -->
@@ -231,63 +190,75 @@
                                             <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
 
                                                 <!-- start user projects -->
-                                                <table class="data table table-striped no-margin">
-                                                    <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>Project Name</th>
-                                                        <th>Client Company</th>
-                                                        <th class="hidden-phone">Hours Spent</th>
-                                                        <th>Contribution</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>New Company Takeover Review</td>
-                                                        <td>Deveint Inc</td>
-                                                        <td class="hidden-phone">18</td>
-                                                        <td class="vertical-align-mid">
-                                                            <div class="progress">
-                                                                <div class="progress-bar progress-bar-success" data-transitiongoal="35" style="width: 35%;" aria-valuenow="35"></div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>New Partner Contracts Consultanci</td>
-                                                        <td>Deveint Inc</td>
-                                                        <td class="hidden-phone">13</td>
-                                                        <td class="vertical-align-mid">
-                                                            <div class="progress">
-                                                                <div class="progress-bar progress-bar-danger" data-transitiongoal="15" style="width: 15%;" aria-valuenow="15"></div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Partners and Inverstors report</td>
-                                                        <td>Deveint Inc</td>
-                                                        <td class="hidden-phone">30</td>
-                                                        <td class="vertical-align-mid">
-                                                            <div class="progress">
-                                                                <div class="progress-bar progress-bar-success" data-transitiongoal="45" style="width: 45%;" aria-valuenow="45"></div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>4</td>
-                                                        <td>New Company Takeover Review</td>
-                                                        <td>Deveint Inc</td>
-                                                        <td class="hidden-phone">28</td>
-                                                        <td class="vertical-align-mid">
-                                                            <div class="progress">
-                                                                <div class="progress-bar progress-bar-success" data-transitiongoal="75" style="width: 75%;" aria-valuenow="75"></div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
+                                                <div class="col-md-12">
+                                                    <div class="x_panel">
+                                                        <div class="x_title">
+                                                            <h2>New Consultation</h2>
+
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <div class="x_content">
+
+                                                            <br>
+                                                            <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" method="post" action="/newPatientPost">
+
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Patient</label>
+                                                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                        <select class="select2_group form-control">
+                                                                            <optgroup label="WaitListed">
+                                                                                <option value="AK">Eva Concepcion</option>
+                                                                                <option value="HI">Carlos Nose</option>
+                                                                            </optgroup>
+                                                                            <optgroup label="All Patients">
+                                                                                <option value="CA">Darlenys</option>
+                                                                                <option value="NV">Isaac</option>
+                                                                                <option value="OR">Dewyn</option>
+                                                                                <option value="WA">Angel</option>
+                                                                            </optgroup>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="caso">Caso <span class="required">*</span>
+                                                                    </label>
+                                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                        <input type="text" id="caso" required="required" name="caso" class="form-control col-md-7 col-xs-12">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Description <span class="required">*</span>
+                                                                    </label>
+                                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                        <textarea type="text" id="description" required="required" name="description" class="form-control col-md-7 col-xs-12"></textarea>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="control-group">
+                                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="prescription">Prescription</label>
+                                                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                        <input id="tags_1" type="text" class="tags form-control"  data-tagsinput-init="true" style="display: none;"><div id="tags_1_tagsinput" class="tagsinput" style="width: auto; min-height: 100px; height: 100px;"><span class="tag"><span>social&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><span class="tag"><span>adverts&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><span class="tag"><span>sales&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><span class="tag"><span>nknk&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><div id="tags_1_addTag"><input id="tags_1_tag" value="" data-default="add a tag" style="color: rgb(102, 102, 102); width: 72px;"></div><div class="tags_clear"></div></div>
+                                                                        <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="ln_solid"></div>
+                                                                <div class="form-group">
+                                                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                                                        <button class="btn btn-primary" type="button">Cancel</button>
+                                                                        <button class="btn btn-primary" type="reset">Reset</button>
+                                                                        <button type="submit" class="btn btn-success">Submit</button>
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </form>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <!-- end user projects -->
 
                                             </div>
@@ -362,8 +333,28 @@
 <script src="/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
 
+<script src="/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
 <script src="/build/js/custom.min.js"></script>
+<script>
 
+    function onAddTag(tag) {
+        alert("Added a tag: " + tag);
+    }
+    function onRemoveTag(tag) {
+        alert("Removed a tag: " + tag);
+    }
+    function onChangeTag(input, tag) {
+        alert("Changed a tag: " + tag);
+    }
+    $(document).ready(function() {
+        $('#tags_1_tagsinput').tagsInput({
+            width: 'auto'
+        });
+        $('#tags_2_tagsinput').tagsInput({
+            width: 'auto'
+        });
+    });
+</script>
 
 <!-- Custom Theme Scripts -->
 

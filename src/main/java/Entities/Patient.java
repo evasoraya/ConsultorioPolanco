@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Entity
@@ -12,18 +13,19 @@ public class Patient {
     @Id
     @GeneratedValue
     private long code;
-    private String ID;
-    private String name;
-    private String lastName;
-    private String birthdate;
-    private char gender;
-    private String phoneNumber;
-    private String cellphone;
-    private String province;
-    private String city;
-    private String direction;
-    private String nationality;
-    private String reference;
+    private String ID;//
+    private String name;//
+    private String lastName;//
+    private String birthdate;//
+    private char gender;//
+    private String phoneNumber;//
+    private ArrayList<String> condiciones;//
+    private String cellphone;//
+    private String province;//
+    private String city;//
+    private String direction;//
+    private String nationality;//
+    private String reference;//
     private String emergencyName;
     private String emergencyPhoneNumber;
     private boolean privatePatient; //Falso si tiene seguro
@@ -156,6 +158,14 @@ public class Patient {
 
     public void setReference(String reference) {
         this.reference = reference;
+    }
+
+    public ArrayList<String> getCondiciones() {
+        return condiciones;
+    }
+
+    public void setCondiciones(ArrayList<String> condiciones) {
+        this.condiciones = condiciones;
     }
 
     public String getEmergencyName() {

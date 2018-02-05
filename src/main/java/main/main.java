@@ -31,11 +31,21 @@ public class main {
         FreeMarkerEngine freeMarkerEngine = new FreeMarkerEngine(configuration);
 
         BootStrapService.getInstancia().init();
+//        User u = new User();
+//        u.setUsername("eva");
+//        u.setName("eva");
+//        u.setLastName("eva");
+//        u.setEmail("eva@eva.com");
+//        u.setRole("doctora");
+//        u.setPassword("eva");
+//        UserServices.getInstancia().crear(u);
+
 
 
         get("/", (request, response) -> {
             User usuario = request.session().attribute(SESSION_NAME);
             if (usuario == null ) response.redirect("/login");
+
 
             ArrayList<Appointment> todayList = new ArrayList<>();
             Date d = new Date();
@@ -45,7 +55,10 @@ public class main {
             list.sort((o1,o2) -> o1.getDate().compareTo(o2.getDate()));
             Map<String, Object> attributes = new HashMap<>();
 
+
+
             attributes.put("patients", list);
+            attributes.put("user",usuario);
             return new ModelAndView(attributes, "index.ftl");
         }, freeMarkerEngine);
 
@@ -58,6 +71,7 @@ public class main {
 
             System.out.println(PatientServices.getInstancia().findAll().size());
             attributes.put("patientList",PatientServices.getInstancia().findAll());
+            attributes.put("user",usuario);
             return new ModelAndView(attributes, "patients.ftl");
         }, freeMarkerEngine);
 
@@ -70,6 +84,7 @@ public class main {
 
             System.out.println(PatientServices.getInstancia().findAll().size());
             attributes.put("patientList",PatientServices.getInstancia().findAll());
+            attributes.put("user",usuario);
             return new ModelAndView(attributes, "newPatient.ftl");
         }, freeMarkerEngine);
 
@@ -78,6 +93,7 @@ public class main {
             if (usuario == null ) response.redirect("/login");
 
             Map<String, Object> attributes = new HashMap<>();
+            attributes.put("user",usuario);
             return new ModelAndView(attributes, "newConsultation.ftl");
         }, freeMarkerEngine);
 
@@ -86,6 +102,7 @@ public class main {
             if (usuario == null ) response.redirect("/login");
 
             Map<String, Object> attributes = new HashMap<>();
+            attributes.put("user",usuario);
             return new ModelAndView(attributes, "newUSer.ftl");
         }, freeMarkerEngine);
 
@@ -95,14 +112,18 @@ public class main {
 
             Map<String, Object> attributes = new HashMap<>();
             attributes.put("consultationList", ConsultationServices.getInstancia().findAll());
+            attributes.put("user",usuario);
             return new ModelAndView(attributes, "consultation.ftl");
         }, freeMarkerEngine);
         get("user", (request, response) -> {
             User usuario = request.session().attribute(SESSION_NAME);
             if (usuario == null ) response.redirect("/login");
-
             Map<String, Object> attributes = new HashMap<>();
+
+
+
             attributes.put("userList", UserServices.getInstancia().findAll());
+            attributes.put("user",usuario);
             return new ModelAndView(attributes, "users.ftl");
         }, freeMarkerEngine);
 
@@ -115,6 +136,7 @@ public class main {
             list.sort((o1,o2) -> o1.getDate().compareTo(o2.getDate()));
 
             attributes.put("appointmentList", list);
+            attributes.put("user",usuario);
             return new ModelAndView(attributes, "appointment.ftl");
         }, freeMarkerEngine);
 
@@ -124,6 +146,7 @@ public class main {
 
             Map<String, Object> attributes = new HashMap<>();
             attributes.put("patients", PatientServices.getInstancia().findAll());
+            attributes.put("user",usuario);
             return new ModelAndView(attributes, "newAppointment.ftl");
         }, freeMarkerEngine);
         get("/patientProfile/:id", (request, response) -> {
@@ -133,12 +156,12 @@ public class main {
             Patient p = PatientServices.getInstancia().find(Long.parseLong(request.params("id")));
 
             Map<String, Object> attributes = new HashMap<>();
-            attributes.put("patient",p);
+            attributes.put("consultationList", ConsultationServices.getInstancia().findByPatient(p.getCode()));
 
+            attributes.put("patient",p);
+            attributes.put("user",usuario);
             return new ModelAndView(attributes, "patientProfile.ftl");
         }, freeMarkerEngine);
-
-
 
         post("/newPatientPost", ((request, response) -> {
 
@@ -175,7 +198,7 @@ public class main {
             p.setTutorPhoneNumber(request.queryParams("encargadoTelefono"));
             PatientServices.getInstancia().crear(p);
 
-            response.redirect("/patients");
+            response.redirect("/patient");
             return "Registrado!";
         }));
 
@@ -237,8 +260,28 @@ public class main {
             return null;
         });
 
+        before("/consultation",((request, response) -> {
+            User usuario = request.session().attribute(SESSION_NAME);
+            if (usuario == null ||usuario.getRole().equals("secretaria") )
+                response.redirect("/");
+        }));
+        before("/newConsultation",((request, response) -> {
+            User usuario = request.session().attribute(SESSION_NAME);
+            if (usuario == null ||usuario.getRole().equals("secretaria") )
+                response.redirect("/");
+        }));
 
+        before("/newAppointment",((request, response) -> {
+            User usuario = request.session().attribute(SESSION_NAME);
+            if (usuario == null ||usuario.getRole().equals("doctora") )
+                response.redirect("/");
+        }));
 
+        before("/appointment",((request, response) -> {
+            User usuario = request.session().attribute(SESSION_NAME);
+            if (usuario == null ||usuario.getRole().equals("doctora") )
+                response.redirect("/");
+        }));
 
     }
     private static boolean autentificar(String username, String password){
