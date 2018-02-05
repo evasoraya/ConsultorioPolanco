@@ -2392,11 +2392,13 @@ if (typeof NProgress != 'undefined') {
 					categoryClass;
 
 				var calendar = $('#calendar').fullCalendar({
+
 				  header: {
 					left: 'prev,next today',
 					center: 'title',
 					right: 'month,agendaWeek,agendaDay,listMonth'
 				  },
+					locale: 'es',
 				  selectable: true,
 				  selectHelper: true,
 				  select: function(start, end, allDay) {
@@ -2406,7 +2408,14 @@ if (typeof NProgress != 'undefined') {
 					ended = end;
 
 					$(".antosubmit").on("click", function() {
-					  var title = $("#title").val();
+						var newP;
+						if(document.getElementById("newPatientCB").checked){
+							newP = "true";
+						}
+					  var title = $("#title option:selected").text();
+					  var code =  $("#title").val();
+					  var descripcion = $("#descr").val();
+                        var start2 = moment(event.start).format("YYYY-MM-DD[T]hh:mm:SS");
 					  if (end) {
 						ended = end;
 					  }
@@ -2422,11 +2431,30 @@ if (typeof NProgress != 'undefined') {
 						  },
 						  true // make the event "stick"
 						);
+
+                         $.ajax({
+                              url: '/newAppointmentPost',
+                              data: 'type=new&title='+code+'&start='+start2+'&description='+descripcion+
+                              '&allDay='+event.allDay+'&newP='+newP,
+                              type: 'POST',
+                              dataType: 'json',
+                              success: function(response){
+                                  //cuando hago el cambio actualizo el evento
+                                  $('#calendar').fullCalendar('updateEvent',event);
+                                  // event_refresh();
+
+                              },
+                              error: function(e){
+                                  console.log(e.responseText);
+
+                              }
+                          });
 					  }
 
-					  $('#title').val('');
+					  $('#title').text('');
 
-					  calendar.fullCalendar('unselect');
+					  cal
+						  endar.fullCalendar('unselect');
 
 					  $('.antoclose').click();
 
@@ -2448,34 +2476,7 @@ if (typeof NProgress != 'undefined') {
 
 					calendar.fullCalendar('unselect');
 				  },
-				  editable: true,
-				  events: [{
-					title: 'All Day Event',
-					start: new Date(y, m, 1)
-				  }, {
-					title: 'Long Event',
-					start: new Date(y, m, d - 5),
-					end: new Date(y, m, d - 2)
-				  }, {
-					title: 'Meeting',
-					start: new Date(y, m, d, 10, 30),
-					allDay: false
-				  }, {
-					title: 'Lunch',
-					start: new Date(y, m, d + 14, 12, 0),
-					end: new Date(y, m, d, 14, 0),
-					allDay: false
-				  }, {
-					title: 'Birthday Party',
-					start: new Date(y, m, d + 1, 19, 0),
-					end: new Date(y, m, d + 1, 22, 30),
-					allDay: false
-				  }, {
-					title: 'Click for Google',
-					start: new Date(y, m, 28),
-					end: new Date(y, m, 29),
-					url: 'http://google.com/'
-				  }]
+				  editable: true
 				});
 				
 			};
