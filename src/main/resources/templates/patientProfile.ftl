@@ -187,7 +187,7 @@
                                 <div class="x_panel">
                                     <div class="x_content">
 
-                                        <form id="nuevaConsulta" data-parsley-validate="" class="form-horizontal form-label-left" method="post" action="/newConsultationPost">
+                                        <form id="nuevaConsulta" data-parsley-validate="" class="form-horizontal form-label-left" method="post" action="/newConsultationPost/${appointment.code}">
 
                                             <div class="row">
                                                 <div class="profile_title">
@@ -646,7 +646,10 @@
                                                     <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
                                                 </div>
                                             </div>
-                                                <input name="idCita" value="${appointment.code}" disabled hidden>
+
+
+
+
 
                                             </div>
                                             <div class="ln_solid"></div>
@@ -672,13 +675,14 @@
 
                             <#list consultationList as c>
                                 <li>
-                                    <img src="/images/img.jpg" class="avatar" alt="Avatar">
+
+                                    <img src="/images/consult.png" class="avatar" alt="Avatar">
                                     <div class="message_date">
                                         <h4 class="date text-info">${c.appointment.date}</h4>
 
                                     </div>
                                     <div class="message_wrapper">
-                                        <h4 class="heading">${c.tipoCaso}</h4>
+                                        <h4 class="heading">${c.razonVisita}</h4>
                                         <blockquote class="message">${c.description}</blockquote>
                                         <p>${c.prescription}</p>
                                         <br>
