@@ -678,7 +678,7 @@
 
 
 <script src="/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
-<script src="/build/js/custom.min.js"></script>
+
 <script>
 
     function onAddTag(tag) {

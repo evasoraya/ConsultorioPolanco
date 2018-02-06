@@ -32,12 +32,12 @@ public class main {
 
         BootStrapService.getInstancia().init();
         User u = new User();
-        u.setUsername("eva");
+        u.setUsername("da");
         u.setName("eva");
         u.setLastName("eva");
         u.setEmail("eva@eva.com");
-        u.setRole("doctora");
-        u.setPassword("eva");
+        u.setRole("admin");
+        u.setPassword("da");
         UserServices.getInstancia().crear(u);
 
 
@@ -223,30 +223,19 @@ public class main {
         post("/newAppointmentPost", ((request, response) -> {
 
 
-
-
             Appointment a = new Appointment();
 
 
-            System.out.println(request.queryParams("date"));
-            if(request.queryParams("newP").equals("false")){
-
-
                 Patient p = PatientServices.getInstancia().find(Long.parseLong(request.queryParams("codigo")));
+
                 a.setPatient(p);
-            }
-            else{
+                a.setInsurance(request.queryParams("seguro"));
+                a.setDescription(request.queryParams("description"));
 
-               a.setName(request.queryParams("nombre"));
-                a.setTelefono(request.queryParams("telefono"));
-            }
+                a.setDate(request.queryParams("date"));
 
-            a.setDescription(request.queryParams("description"));
-            a.setDescription(request.queryParams("insurance"));
-            a.setDate(request.queryParams("date"));
-            AppointmentServices.getInstancia().crear(a);
+                 AppointmentServices.getInstancia().crear(a);
 
-            System.out.println("laa");
             response.redirect("/newAppointment");
             return "Registrado!";
         }));

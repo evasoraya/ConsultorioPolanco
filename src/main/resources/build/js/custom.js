@@ -2380,10 +2380,10 @@ if (typeof NProgress != 'undefined') {
 	   	/* CALENDAR */
 		  
 		    function  init_calendar() {
-					
+
 				if( typeof ($.fn.fullCalendar) === 'undefined'){ return; }
 				console.log('init_calendar');
-					
+
 				var date = new Date(),
 					d = date.getDate(),
 					m = date.getMonth(),
@@ -2406,19 +2406,16 @@ if (typeof NProgress != 'undefined') {
 					ended = end;
 
 					$(".antosubmit").on("click", function() {
-						var newP;
-                        var title;
-                        var telefono;
-						if(document.getElementById("newPatientCB").checked){
-							newP = "true";
-                            title = $("nameNew").val();
-						}else{
-							newP = "false";
-                            title = $("#title option:selected").text();
-						}
-                        var code =  $("#title").val();
-                        telefono = $("#phoneNumberNew").val();
 
+                        var title;
+                        var seguro;
+
+						title = $("#title option:selected").text();
+
+						console.log(title + "okkk");
+                        var code =  $("#title").val();
+
+						seguro = $("#insurance").val();
 					  var descripcion = $("#descr").val();
                         var start2 = moment(event.start).format("YYYY-MM-DD[T]hh:mm:SS");
 					  if (end) {
@@ -2440,7 +2437,7 @@ if (typeof NProgress != 'undefined') {
                          $.ajax({
                               url: '/newAppointmentPost',
                               data: 'type=new&codigo='+code+'&date='+start2+'&description='+descripcion+
-                              '&newP='+newP+'&nombre='+title+'&telefono='+telefono,
+                              '&nombre='+title+'&seguro='+seguro,
                               type: 'POST',
                               dataType: 'json',
                               success: function(response){
@@ -2482,7 +2479,7 @@ if (typeof NProgress != 'undefined') {
 				  },
 				  editable: true
 				});
-				
+
 			};
 	   
 		/* DATA TABLES */
