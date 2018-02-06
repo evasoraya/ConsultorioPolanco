@@ -2412,15 +2412,12 @@ if (typeof NProgress != 'undefined') {
 						if(document.getElementById("newPatientCB").checked){
 							newP = "true";
                             title = $("nameNew").val();
-
 						}else{
 							newP = "false";
                             title = $("#title option:selected").text();
-
 						}
                         var code =  $("#title").val();
                         telefono = $("#phoneNumberNew").val();
-
 
 					  var descripcion = $("#descr").val();
                         var start2 = moment(event.start).format("YYYY-MM-DD[T]hh:mm:SS");
