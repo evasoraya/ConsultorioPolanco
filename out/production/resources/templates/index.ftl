@@ -50,7 +50,8 @@
                                 </div>
                                 <div class="col-md-3 col-sm-12 col-xs-12">
                                     <div class="x_title">
-                                        <h2>Pacientes en lista de espera para hoy </h2>
+                                        <h2>Pacientes en lista de espera</h2>
+                                        <h2>Hoy</h2>
 
                                         <div class="clearfix"></div>
                                     </div>

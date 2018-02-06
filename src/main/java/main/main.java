@@ -244,6 +244,7 @@ public class main {
             a.setDescription(request.queryParams("description"));
             a.setDescription(request.queryParams("insurance"));
             a.setDate(request.queryParams("date"));
+            System.out.println("La fechaaa "+request.queryParams("date"));
             AppointmentServices.getInstancia().crear(a);
 
             System.out.println("laa");
