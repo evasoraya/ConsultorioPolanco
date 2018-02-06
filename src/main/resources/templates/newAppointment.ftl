@@ -96,17 +96,18 @@
                     <form id="antoform" class="form-horizontal calender" role="form">
                         <div class="form-group">
                             <div class="checkbox col-sm-6 control-label">
-                                <label>
-                                    <input type="checkbox" id="newPatientCB" class="flat">Nuevo Paciente
-                                </label>
+                                <h2>
+                                    <!--<if canUse>--><a href="/newPatient" role="button" class="btn btn-primary">New Patient</a><!--<else><strong>Only ASSISTANT accounts can register new patients</strong></if>-->
+                                </h2>
                             </div>
                         </div>
 
-                        <div class="form-group" id="noNewPatient">
+                        <div class="form-group" >
                             <label for="title" class="col-sm-3 control-label">Paciente</label>
                             <div class="col-sm-9">
-                                <select id="title" name="title" class="select2_group form-control">
+                                <select id="title" required="required" name="title" class="select2_group form-control">
                                     <optgroup label="Todos los Pacientes">
+                                        <option selected disabled>Seleccione</option>
                                     <#list patients as p>
                                         <option value="${p.code}">${p.name} ${p.lastName}</option>
                                     </#list>
@@ -116,7 +117,7 @@
                             </div>
                         </div>
 
-                        <div id="newPatient" hidden>
+                       <!-- <div id="newPatient" hidden>
                             <div class="form-group">
                                 <label for="nameNew" class="col-sm-3 control-label">Nombre</label>
                                 <div class="col-sm-9">
@@ -130,21 +131,28 @@
                                     <input class="form-control"  id="phoneNumberNew" name="phoneNumberNew"/>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
 
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Seguro</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" type="text" name="insurance">
+                            </div>
+                        </div>
 
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Descripción</label>
                             <div class="col-sm-9">
-                                <textarea class="form-control" style="height:55px;" id="descr" name="descr"></textarea>
+                                <textarea type="text" class="form-control" style="height:55px;" id="descr" name="descr"></textarea>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary antosubmit">Save changes</button>
+                <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary antosubmit">Salvar</button>
             </div>
         </div>
     </div>
@@ -155,7 +163,7 @@
 
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel2">Edit Calendar Entry</h4>
+                <h4 class="modal-title" id="myModalLabel2">Editar entrada al calendario</h4>
             </div>
             <div class="modal-body">
 
@@ -242,7 +250,15 @@
 <tester id="tags_1_tag_autosize_tester" style="position: absolute; top: -9999px; left: -9999px; width: auto; font-size: 13px; font-family: helvetica; font-weight: 400; letter-spacing: 0px; white-space: nowrap;">nknk</tester>
 <!-- Custom Theme Scripts -->
 
-
+<script src="/build/js/custom.min.js"></script>
+<script>
+    $(function() {
+        $('.lista').on('change', function() {
+            var $sels = $('.lista option:selected[value=""]');
+            $("#guardar").attr("disabled", $sels.length > 0);
+        }).change();
+    });
+</script>
 <!-- /jQuery Tags Input -->
 
 

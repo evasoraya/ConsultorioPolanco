@@ -29,7 +29,7 @@
         <div class="animate form login_form">
             <section class="login_content">
                 <form action="/login" method="post">
-                    <h1>Login Form</h1>
+                    <h1>Iniciar sesion</h1>
                     <div>
                         <input type="text" class="form-control" placeholder="username" name="username" required="">
                     </div>
@@ -37,8 +37,8 @@
                         <input type="password" class="form-control" placeholder="password" name="password" required="">
                     </div>
                     <div>
-                        <button type="submit" class="btn btn-success">Log in</button>
-                        <a class="reset_pass" href="#">Lost your password?</a>
+                        <button type="submit" class="btn btn-success">Iniciar sesion</button>
+
                     </div>
 
                     <div class="clearfix"></div>
@@ -49,8 +49,9 @@
                         <br>
 
                         <div>
-                            <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                            <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                            <h1><i class="fa fa-user-md"></i>Consultorio Doctora Polanco</h1>
+                            <p>Ortopeda | Union Medica Del Norte</p>
+
                         </div>
                     </div>
                 </form>

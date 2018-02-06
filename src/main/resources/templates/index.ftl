@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="col-md-3 col-sm-12 col-xs-12">
                                     <div class="x_title">
-                                        <h2>Patients Queue for today</h2>
+                                        <h2>Pacientes en lista de espera para hoy </h2>
 
                                         <div class="clearfix"></div>
                                     </div>
@@ -71,7 +71,7 @@
                                         </li>
                                     <#else>
                                         <div class="media-body">
-                                            <p><strong> empty </p>
+                                            <p><strong> No hay pacientes en lista </p>
 
                                         </div>
 
@@ -87,7 +87,7 @@
                     <div class="col-md-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>Weekly Summary <small>Patients attended</small></h2>
+                                <h2>Resumen semanal <small>Pacientes atendidos</small></h2>
 
                                 <div class="clearfix"></div>
                             </div>
@@ -95,13 +95,29 @@
                                 <div class="row" style="border-bottom: 1px solid #E0E0E0; padding-bottom: 5px; margin-bottom: 5px;">
                                     <div class="col-md-5">
                                         <div class="row" style="text-align: center;">
-                                            <div class="col-md-6">
-                                                <canvas class="canvasDoughnut" height="200" width="200" style="margin: 10px 20px 20px 0"></canvas>
+                                            <div class="col-md-3">
+                                                <canvas class="canvasDoughnut col-md-3" height="200" width="200" style="margin: 10px 20px 20px 0">
+
+                                                </canvas>
                                                 <h4 style="margin:0">Insuranced patients</h4>
                                             </div>
-                                            <div class="col-md-6">
-                                                <canvas class="canvasDoughnut" height="200" width="200" style="margin: 10px 20px 20px 0"></canvas>
+                                            <div class="col-md-3">
+                                                <canvas class="canvasDoughnut col-md-3" height="200" width="200" style="margin: 10px 20px 20px 0">
+
+                                                </canvas>
                                                 <h4 style="margin:0">Not Insuranced patients</h4>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <canvas class="canvasDoughnut col-md-3" height="200" width="200" style="margin: 10px 20px 20px 0">
+
+                                                </canvas>
+                                                <h4 style="margin:0">Pacientes menores (0-18)</h4>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <canvas class="canvasDoughnut col-md-3" height="200" width="200" style="margin: 10px 20px 20px 0">
+
+                                                </canvas>
+                                                <h4 style="margin:0">Pacientes mayores (18+)</h4>
                                             </div>
 
                                         </div>

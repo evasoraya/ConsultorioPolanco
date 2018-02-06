@@ -60,16 +60,16 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="cedula" class="control-label col-md-3 col-sm-3 col-xs-12">Cédula</label>
+                                        <label for="cedula" class="control-label col-md-3 col-sm-3 col-xs-12">Cédula<span class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <input id="cedula" class="form-control col-md-7 col-xs-12" type="text" name="cedula">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="nacionalidad" class="control-label col-md-3 col-sm-3 col-xs-12">Nacionalidad</label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <select id="nacionalidad" name="nacionalidad" class="form-control col-md-7 col-xs-12" onchange="showDiv(this)">
-                                                <option selected disabled>Seleccione</option>
+                                        <label for="nacionalidad" class="control-label col-md-3 col-sm-3 col-xs-12">Nacionalidad<span class="required">*</span></label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 ">
+                                            <select id="nacionalidad" required name="nacionalidad" class="form-control lista required col-md-7 col-xs-12" onchange="showDiv(this)">
+                                                <option value="">Seleccione</option>
                                                 <option value="Canadiense">Canadiense</option>
                                                 <option value="Colombiana">Colombiana</option>
                                                 <option value="Cubana">Cubana</option>
@@ -91,15 +91,15 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="birthday" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha Nacimiento</label>
+                                        <label for="birthday" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha Nacimiento<span class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <input id="birthday" class="form-control col-md-7 col-xs-12" type="text" name="birthdate" placeholder="dd/mm/aaaa">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="gender" class="control-label col-md-3 col-sm-3 col-xs-12">Género</label>
+                                        <label for="gender" class="control-label col-md-3 col-sm-3 col-xs-12">Género<span class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <select id="gender" name="gender" class="form-control col-md-7 col-xs-12">
+                                            <select id="gender"  name="gender" class="form-control lista col-md-7 col-xs-12" >
                                                 <option disabled selected>
                                                     Seleccione
                                                 </option>
@@ -113,7 +113,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="telefono" class="control-label col-md-3 col-sm-3 col-xs-12">Teléfono</label>
+                                        <label for="telefono" class="control-label col-md-3 col-sm-3 col-xs-12">Teléfono<span class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <input id="telefono" class="telefono form-control col-md-7 col-xs-12" type="text" name="telefono">
                                         </div>
@@ -161,9 +161,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="planMedico" class="control-label col-md-3 col-sm-3 col-xs-12">Plan Médico</label>
+                                        <label for="planMedico" class="control-label col-md-3 col-sm-3 col-xs-12">Plan Médico<span class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <select id="planMedico" name="planMedico" class="form-control col-md-7 col-xs-12">
+                                            <select id="planMedico" required name="planMedico" class="form-control lista col-md-7 col-xs-12">
                                                 <option selected disabled>Seleccione</option>
                                                 <option value="Asegurado">Asegurado</option>
                                                 <option value="Privado">Privado</option>
@@ -192,7 +192,7 @@
                                     <div class="ln_solid"></div>
                                     <div class="form-group">
                                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                            <button type="submit" class="btn btn-success">Guardar</button>
+                                            <button id="guardar" type="submit" class="btn btn-success">Guardar</button>
                                         </div>
                                     </div>
 
@@ -260,7 +260,14 @@
 <!-- Custom Theme Scripts -->
 
 <script src="/build/js/custom.min.js"></script>
-
+<script>
+    $(function() {
+        $('.lista').on('change', function() {
+            var $sels = $('.lista option:selected[value=""]');
+            $("#guardar").attr("disabled", $sels.length > 0);
+        }).change();
+    });
+</script>
 <!--MaskedInput Plugin-->
 <script src="/js/jquery.maskedinput.js" type="text/javascript"></script>
 <script src="/js/inputsValidation.js" type="text/javascript"></script>
