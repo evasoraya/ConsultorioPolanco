@@ -166,18 +166,32 @@ public class main {
             attributes.put("user",usuario);
             return new ModelAndView(attributes, "newAppointment.ftl");
         }, freeMarkerEngine);
+
         get("/patientProfile/:id", (request, response) -> {
             User usuario = request.session().attribute(SESSION_NAME);
             if (usuario == null ) response.redirect("/login");
 
-            Patient p = PatientServices.getInstancia().find(Long.parseLong(request.params("id")));
+            Appointment a = AppointmentServices.getInstancia().find(Long.parseLong(request.params("id")));
 
             Map<String, Object> attributes = new HashMap<>();
-            attributes.put("consultationList", ConsultationServices.getInstancia().findByPatient(p.getCode()));
+            attributes.put("consultationList", ConsultationServices.getInstancia().findByPatient(a.getPatient().getCode()));
 
-            attributes.put("patient",p);
+            attributes.put("appointment",a);
             attributes.put("user",usuario);
             return new ModelAndView(attributes, "patientProfile.ftl");
+        }, freeMarkerEngine);
+
+        get("/patient/:id", (request, response) -> {
+            User usuario = request.session().attribute(SESSION_NAME);
+            if (usuario == null ) response.redirect("/login");
+
+            Patient a = PatientServices.getInstancia().find(Long.parseLong(request.params("id")));
+
+            Map<String, Object> attributes = new HashMap<>();
+
+            attributes.put("patient",a);
+            attributes.put("user",usuario);
+            return new ModelAndView(attributes, "profile.ftl");
         }, freeMarkerEngine);
 
         post("/newPatientPost", ((request, response) -> {
@@ -363,7 +377,9 @@ public class main {
            consulta.setPielDescripcion(request.queryParams("piel"));
            consulta.setDescription(request.queryParams("description"));
            consulta.setPrescription(request.queryParams("tags_1"));
-
+           Appointment a = AppointmentServices.getInstancia().find(request.queryParams("idCita"));
+           consulta.setAppointment(a);
+           ConsultationServices.getInstancia().crear(consulta);
             response.redirect("/");
             return "Registrado!";
         }));

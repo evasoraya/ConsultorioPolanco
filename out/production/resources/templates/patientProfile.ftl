@@ -22,10 +22,87 @@
 <body class="nav-md">
 <div class="container body">
     <div class="main_container">
-    <#include "sidebar.ftl">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="/images/foto.png" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span>Bienvenida,</span>
+                        <h2>${user.name} ${user.lastName}</h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br/>
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+
+                        <ul class="nav side-menu">
+                            <li><a href="/"><i class="fa fa-home"></i> Inicio </a>
+
+                            </li>
+                            <li><a><i class="fa fa-user"></i> Pacientes <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="/newPatient">Nuevo Paciente</a></li>
+                                    <li><a href="/patient">Listado de Pacientes</a></li>
+                                </ul>
+                            </li>
+                        <#if (user.role) == "doctora" || (user.role) == "admin" >
+                            <li><a href="/consultation"><i class="fa fa-edit"></i> Consultas <span class="fa fa-chevron-down"></span></a>
+
+
+                            </li>
+                        </#if>
+                        <#if (user.role) == "secretaria" || (user.role) == "admin" >
+                            <li><a><i class="fa fa-calendar"></i> Citas <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="/newAppointment">Nueva Cita</a></li>
+                                    <li><a href="/appointment">Listado de Citas</a></li>
+                                </ul>
+                            </li>
+                        </#if >
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+
+                <!-- /menu footer buttons -->
+            </div>
+        </div>
 
         <!-- top navigation -->
-    <#include "topNavigation.ftl">
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="/images/foto.png" alt="">${user.name} ${user.lastName}
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+
+
+                                <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                            </ul>
+                        </li>
+
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
         <!-- /top navigation -->
 
         <!-- page content -->
@@ -51,7 +128,7 @@
                                             <img class="img-responsive avatar-view" src="/images/picture.jpg" alt="Avatar" title="Change the avatar">
                                         </div>
                                     </div>
-                                    <h3>${patient.name}</h3>
+                                    <h3>${appointment.patient.name}</h3>
 
                                 </div>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
@@ -66,23 +143,23 @@
                                         <div class="container">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <h4><strong >Nombre: </strong> ${patient.name}</h4>
-                                                    <h4><strong >Apellido: </strong> ${patient.lastName}</h4>
+                                                    <h4><strong >Nombre: </strong> ${appointment.patient.name}</h4>
+                                                    <h4><strong >Apellido: </strong> ${appointment.patient.lastName}</h4>
                                                     <h4><strong >Condiciones: </strong> </h4>
-                                                    <h4><strong >Fecha de nacimiento: </strong> ${patient.birthdate}</h4>
-                                                    <h4><strong >Cedula: </strong> ${patient.ID}</h4>
-                                                    <h4><strong >Numero de telefono: </strong> ${patient.phoneNumber}</h4>
-                                                    <h4><strong >Numero de celular: </strong> ${patient.cellphone}</h4>
+                                                    <h4><strong >Fecha de nacimiento: </strong> ${appointment.patient.birthdate}</h4>
+                                                    <h4><strong >Cedula: </strong> ${appointment.patient.ID}</h4>
+                                                    <h4><strong >Numero de telefono: </strong> ${appointment.patient.phoneNumber}</h4>
+                                                    <h4><strong >Numero de celular: </strong> ${appointment.patient.cellphone}</h4>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <h4><strong >Genero: </strong> <#if patient.gender == "f"> Femenino  <#else> Masculino </#if></h4>
-                                                    <h4><strong >Nacionalidad: </strong> ${patient.nationality}</h4>
-                                                    <h4><strong>Provincia: </strong> ${patient.province}</h4>
-                                                    <h4><strong>City: </strong> ${patient.city}</h4>
-                                                    <h4><strong>Direccion: </strong> ${patient.direction}</h4>
-                                                    <h4><strong>Referenciado por: </strong> ${patient.reference}</h4>
-                                                    <h4><strong>Contacto de emergencia: </strong> ${patient.emergencyName} ${patient.emergencyPhoneNumber} </h4>
-                                                    <h4><strong>Tutor: </strong> ${patient.tutor} ${patient.tutorPhoneNumber}</h4>
+                                                    <h4><strong >Genero: </strong> <#if appointment.patient.gender == "f"> Femenino  <#else> Masculino </#if></h4>
+                                                    <h4><strong >Nacionalidad: </strong> ${appointment.patient.nationality}</h4>
+                                                    <h4><strong>Provincia: </strong> ${appointment.patient.province}</h4>
+                                                    <h4><strong>City: </strong> ${appointment.patient.city}</h4>
+                                                    <h4><strong>Direccion: </strong> ${appointment.patient.direction}</h4>
+                                                    <h4><strong>Referenciado por: </strong> ${appointment.patient.reference}</h4>
+                                                    <h4><strong>Contacto de emergencia: </strong> ${appointment.patient.emergencyName} ${appointment.patient.emergencyPhoneNumber} </h4>
+                                                    <h4><strong>Tutor: </strong> ${appointment.patient.tutor} ${appointment.patient.tutorPhoneNumber}</h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -110,7 +187,7 @@
                                 <div class="x_panel">
                                     <div class="x_content">
 
-                                        <form id="nuevaConsulta" data-parsley-validate="" class="form-horizontal form-label-left" method="post" action="/newPatientPost">
+                                        <form id="nuevaConsulta" data-parsley-validate="" class="form-horizontal form-label-left" method="post" action="/newConsultationPost">
 
                                             <div class="row">
                                                 <div class="profile_title">
@@ -258,7 +335,7 @@
                                                                 </label>
                                                             </div>
                                                             <div>
-                                                                <label class="control-label  col-md-2 col-sm-2 col-xs-2" for="tratamientoAnterior">¿Cuál?</label>
+                                                                <label class="control-label  col-md-2 col-sm-2 col-xs-2" for="enfermedadesSerias">¿Cuál?</label>
                                                                 <div class="col-md-8 col-sm-8 col-xs-8" style="float: right">
                                                                     <input type="text" id="enfermedadesSerias" name="enfermedadesSerias" class="form-control"/>
                                                                 </div>
@@ -565,10 +642,11 @@
                                             <div class="control-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="prescription">Receta</label>
                                                 <div class="col-md-8 col-sm-8 col-xs-8">
-                                                    <input id="tags_1" type="text" class="tags form-control"  data-tagsinput-init="true" style="display: none;"><div id="tags_1_tagsinput" class="tagsinput" style="width: auto; min-height: 100px; height: 100px;"><span class="tag"><span>social&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><span class="tag"><span>adverts&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><span class="tag"><span>sales&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><span class="tag"><span>nknk&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><div id="tags_1_addTag"><input id="tags_1_tag" value="" data-default="add a tag" style="color: rgb(102, 102, 102); width: 72px;"></div><div class="tags_clear"></div></div>
+                                                    <input id="tags_1" name="tags_1"  type="text" class="tags form-control"  data-tagsinput-init="true" style="display: none;"><div id="tags_1_tagsinput" class="tagsinput" style="width: auto; min-height: 100px; height: 100px;"><span class="tag"><span>social&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><span class="tag"><span>adverts&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><span class="tag"><span>sales&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><span class="tag"><span>nknk&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><div id="tags_1_addTag"><input id="tags_1_tag" value="" data-default="add a tag" style="color: rgb(102, 102, 102); width: 72px;"></div><div class="tags_clear"></div></div>
                                                     <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
                                                 </div>
                                             </div>
+                                                <input name="idCita" value="${appointment.code}" disabled hidden>
 
                                             </div>
                                             <div class="ln_solid"></div>

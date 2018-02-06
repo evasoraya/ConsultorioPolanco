@@ -65,7 +65,7 @@
                                                 <i class="fa fa-wheelchair aero"></i>
                                             </a>
                                             <div class="media-body">
-                                                <a  class="title" href="/patientProfile/${p.patient.code}">${p.patient.name} ${p.patient.lastName}</a>
+                                                <a  class="title" href="/patientProfile/${p.code}">${p.patient.name} ${p.patient.lastName}</a>
                                                 <p><strong> Edad: </strong> ${p.patient.gender} </p>
 
                                             </div>

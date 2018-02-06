@@ -55,7 +55,7 @@
                                         <tbody>
                                         <#list patientList?sort_by("lastName") as patient>
                                         <tr>
-                                            <td><a href="/patientProfile/${patient.code}">${patient.ID}</a></td>
+                                            <td><a href="/patient/${patient.code}">${patient.ID}</a></td>
                                             <td>${patient.name}</td>
                                             <td>${patient.lastName}</td>
                                             <td>${patient.gender}</td>
