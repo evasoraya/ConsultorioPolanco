@@ -241,7 +241,8 @@ public class main {
                 a.setTelefono(request.queryParams("telefono"));
             }
 
-           a.setDescription(request.queryParams("description"));
+            a.setDescription(request.queryParams("description"));
+            a.setDescription(request.queryParams("insurance"));
             a.setDate(request.queryParams("date"));
             AppointmentServices.getInstancia().crear(a);
 

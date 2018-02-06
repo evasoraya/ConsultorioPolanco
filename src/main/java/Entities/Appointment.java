@@ -13,6 +13,7 @@ public class Appointment {
     private Patient patient;
     private String date;
     private String description;
+    private String insurance;
     //En caso que no sea un paciente:
     private String name;
     private String telefono;
@@ -79,5 +80,13 @@ public class Appointment {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public String getInsurance() {
+        return insurance;
+    }
+
+    public void setInsurance(String insurance) {
+        this.insurance = insurance;
     }
 }
