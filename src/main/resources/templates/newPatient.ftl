@@ -100,7 +100,7 @@
                                         <label for="gender" class="control-label col-md-3 col-sm-3 col-xs-12">Género<span class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <select id="gender"  name="gender" class="form-control lista col-md-7 col-xs-12" >
-                                                <option disabled selected>
+                                                <option value="" selected>
                                                     Seleccione
                                                 </option>
                                                 <option value="f">
@@ -164,7 +164,7 @@
                                         <label for="planMedico" class="control-label col-md-3 col-sm-3 col-xs-12">Plan Médico<span class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <select id="planMedico" required name="planMedico" class="form-control lista col-md-7 col-xs-12">
-                                                <option selected disabled>Seleccione</option>
+                                                <option selected value="">Seleccione</option>
                                                 <option value="Asegurado">Asegurado</option>
                                                 <option value="Privado">Privado</option>
                                             </select>
@@ -259,7 +259,6 @@
 
 <!-- Custom Theme Scripts -->
 
-<script src="/build/js/custom.min.js"></script>
 <script>
     $(function() {
         $('.lista').on('change', function() {

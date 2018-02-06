@@ -14,9 +14,8 @@ public class Appointment {
     private String date;
     private String description;
     private String insurance;
-    //En caso que no sea un paciente:
-    private String name;
-    private String telefono;
+    private Boolean status;
+
 
 
     public  Appointment(){}
@@ -25,13 +24,6 @@ public class Appointment {
         this.date = date;
         this.description = description;
 
-    }
-
-    public Appointment(String date, String description, String name, String telefono) {
-        this.date = date;
-        this.description = description;
-        this.name = name;
-        this.telefono = telefono;
     }
 
     public String getDescription() {
@@ -66,20 +58,12 @@ public class Appointment {
         this.date = date;
     }
 
-    public String getName() {
-        return name;
+    public String getinsurance() {
+        return insurance;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setinsurance(String insurance) {
+        this.insurance = insurance;
     }
 
     public String getInsurance() {
@@ -88,5 +72,13 @@ public class Appointment {
 
     public void setInsurance(String insurance) {
         this.insurance = insurance;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 }

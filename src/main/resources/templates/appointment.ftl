@@ -57,7 +57,7 @@
                                             <td>${appointment.patient.ID}</td>
                                             <td>${appointment.patient.name} ${appointment.patient.lastName}</td>
                                             <td>${appointment.date}</td>
-                                            <td>${appointment.insurace}</td>
+                                            <td>${appointment.insurance}</td>
 
                                         </tr>
                                         <#else>

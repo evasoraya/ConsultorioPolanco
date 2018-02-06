@@ -137,7 +137,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Seguro</label>
                             <div class="col-sm-9">
-                                <input class="form-control" type="text" name="insurance">
+                                <input class="form-control" type="text" id="insurance" name="insurance">
                             </div>
                         </div>
 
@@ -250,7 +250,7 @@
 <tester id="tags_1_tag_autosize_tester" style="position: absolute; top: -9999px; left: -9999px; width: auto; font-size: 13px; font-family: helvetica; font-weight: 400; letter-spacing: 0px; white-space: nowrap;">nknk</tester>
 <!-- Custom Theme Scripts -->
 
-<script src="/build/js/custom.min.js"></script>
+
 <script>
     $(function() {
         $('.lista').on('change', function() {
