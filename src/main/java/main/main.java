@@ -170,13 +170,14 @@ public class main {
         get("/patientProfile/:id", (request, response) -> {
             User usuario = request.session().attribute(SESSION_NAME);
             if (usuario == null ) response.redirect("/login");
-
-            Appointment a = AppointmentServices.getInstancia().find(Long.parseLong(request.params("id")));
+            System.out.println("Aquii"+Long.parseLong(request.params("id").replace(",","")));
+            Appointment a = AppointmentServices.getInstancia().find(Long.parseLong(request.params("id").replace(",","")));
 
             Map<String, Object> attributes = new HashMap<>();
             attributes.put("consultationList", ConsultationServices.getInstancia().findByPatient(a.getPatient().getCode()));
 
             attributes.put("appointment",a);
+            attributes.put("fecha", a.getDate().split("T")[0]);
             attributes.put("user",usuario);
             return new ModelAndView(attributes, "patientProfile.ftl");
         }, freeMarkerEngine);
@@ -192,6 +193,19 @@ public class main {
             attributes.put("patient",a);
             attributes.put("user",usuario);
             return new ModelAndView(attributes, "profile.ftl");
+        }, freeMarkerEngine);
+
+        get("/consultation/:id", (request, response) -> {
+            User usuario = request.session().attribute(SESSION_NAME);
+            if (usuario == null ) response.redirect("/login");
+            System.out.println("Aquii"+Long.parseLong(request.params("id")));
+            Consultation a = ConsultationServices.getInstancia().find(Long.parseLong(request.params("id")));
+
+            Map<String, Object> attributes = new HashMap<>();
+
+            attributes.put("consulta",a);
+            attributes.put("user",usuario);
+            return new ModelAndView(attributes, "consultationProfile.ftl");
         }, freeMarkerEngine);
 
         post("/newPatientPost", ((request, response) -> {
@@ -271,6 +285,7 @@ public class main {
             a.setDescription(request.queryParams("insurance"));
             a.setDate(request.queryParams("date"));
             a.setStatus(false);
+
             AppointmentServices.getInstancia().crear(a);
 
 
@@ -284,10 +299,10 @@ public class main {
 
             consulta.setrazonVisita(request.queryParams("razonVisita"));
             consulta.setInicioSintomas(request.queryParams("inicioSintomas"));
-            consulta.setFrecuenciaSintomas(request.queryParams("inicioSintomas"));
+            consulta.setFrecuenciaSintomas(request.queryParams("frecuenciaSintomas"));
             consulta.setCondicion(request.queryParams("condicion"));
             consulta.setLugarDolor(request.queryParams("lugarDolor"));
-            consulta.setLoHaceSentirMejor(request.queryParams("sentirMejor"));
+            consulta.setLoHaceSentirMejor(request.queryParams("sienteMejor"));
             consulta.setFrecuenciaDolor(request.queryParams("frecuenciaDolor"));
             consulta.setActividadesDolor(request.queryParams("actividadesDolor"));
             if(request.queryParams("tratamientoAnteriorSi")!= null && request.queryParams("tratamientoAnteriorSi").equals("on") ){
@@ -380,6 +395,7 @@ public class main {
            System.out.println("ellll "+request.params("id"));
            Appointment a = AppointmentServices.getInstancia().find(Long.parseLong(request.params("id")));
            a.setStatus(true);
+           AppointmentServices.getInstancia().editar(a);
            consulta.setAppointment(a);
            ConsultationServices.getInstancia().crear(consulta);
             System.out.println("el sizeee "+ConsultationServices.getInstancia().findAll().size());

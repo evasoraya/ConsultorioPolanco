@@ -57,7 +57,7 @@
                                         <#list consultationList?sort_by("code") as consultation>
                                         <tr>
 
-                                            <td>${consultation.appointment.patient.name} ${consultation.appointment.patient.lastName}</td>
+                                            <td><a href="/consultation/${consultation.code}">${consultation.appointment.patient.name} ${consultation.appointment.patient.lastName}</a></td>
                                             <td>${consultation.razonVisita}</td>
                                             <td>${consultation.prescription}</td>
 
