@@ -5,7 +5,10 @@ import Entities.Consultation;
 import Entities.Patient;
 import Entities.User;
 import Services.*;
+import com.google.gson.Gson;
 import freemarker.template.Configuration;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import spark.ModelAndView;
 import spark.template.freemarker.FreeMarkerEngine;
 
@@ -23,6 +26,7 @@ public class main {
     private static final String COOKIE_NAME = "user_cookie";
 
     public static void main(String[] args) {
+        port(getHerokuAssignedPort());
         enableDebugScreen();
         staticFileLocation("/");
 
@@ -55,6 +59,7 @@ public class main {
             List<Appointment> list = AppointmentServices.getInstancia().findAll();
 
 
+
             DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 
 
@@ -68,6 +73,22 @@ public class main {
             Collections.sort(list2,(o1,o2) -> o1.getDate().compareTo(o2.getDate()));
 
             Map<String, Object> attributes = new HashMap<>();
+
+
+            HashMap<String, Object> event = new HashMap<String, Object>();
+            ArrayList<HashMap> json_events = new ArrayList<HashMap>();
+
+            for(Appointment ap: AppointmentServices.getInstancia().findAll()){
+                event.put("title", String.valueOf(ap.getPatient().getName() + " " + ap.getPatient().getLastName()));
+                event.put("start", ap.getDate());
+                json_events.add(event);
+                event = new HashMap<String, Object>();
+
+            }
+
+            Gson gson = new Gson();
+
+            attributes.put("json_events",  "'" + gson.toJson(json_events) + "'" );
 
             attributes.put("patients", list2);
             attributes.put("user",usuario);
@@ -157,6 +178,21 @@ public class main {
             if (usuario == null ) response.redirect("/login");
 
             Map<String, Object> attributes = new HashMap<>();
+            HashMap<String, Object> event = new HashMap<String, Object>();
+            ArrayList<HashMap> json_events = new ArrayList<HashMap>();
+
+            for(Appointment ap: AppointmentServices.getInstancia().findAll()){
+                event.put("title", String.valueOf(ap.getPatient().getName() + " " + ap.getPatient().getLastName()));
+                event.put("start", ap.getDate());
+                json_events.add(event);
+                event = new HashMap<String, Object>();
+
+            }
+
+            Gson gson = new Gson();
+
+            attributes.put("json_events",  "'" + gson.toJson(json_events) + "'" );
+
             attributes.put("patients", PatientServices.getInstancia().findAll());
             attributes.put("user",usuario);
             return new ModelAndView(attributes, "newAppointment.ftl");
@@ -165,8 +201,8 @@ public class main {
         get("/patientProfile/:id", (request, response) -> {
             User usuario = request.session().attribute(SESSION_NAME);
             if (usuario == null ) response.redirect("/login");
-            System.out.println("Aquii"+Long.parseLong(request.params("id").replace(",","")));
-            Appointment a = AppointmentServices.getInstancia().find(Long.parseLong(request.params("id").replace(",","")));
+
+            Appointment a = AppointmentServices.getInstancia().find(Long.parseLong(request.params("id")));
 
             Map<String, Object> attributes = new HashMap<>();
             attributes.put("consultationList", ConsultationServices.getInstancia().findByPatient(a.getPatient().getCode()));
@@ -451,6 +487,14 @@ public class main {
         User u = UserServices.getInstancia().findByUsername(username);
         if(u != null && u.getPassword().equals(password)) return true;
         return false;
+    }
+
+    static int getHerokuAssignedPort() {
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        if (processBuilder.environment().get("PORT") != null) {
+            return Integer.parseInt(processBuilder.environment().get("PORT"));
+        }
+        return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
     }
 
 }

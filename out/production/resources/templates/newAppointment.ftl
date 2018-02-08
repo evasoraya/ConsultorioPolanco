@@ -64,6 +64,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -97,7 +98,7 @@
                         <div class="form-group">
                             <div class="checkbox col-sm-6 control-label">
                                 <h2>
-                                    <!--<if canUse>--><a href="/newPatient" role="button" class="btn btn-primary">New Patient</a><!--<else><strong>Only ASSISTANT accounts can register new patients</strong></if>-->
+                                    <!--<if canUse>--><a href="/newPatient" role="button" class="btn btn-primary">Nuevo Paciente</a><!--<else><strong>Only ASSISTANT accounts can register new patients</strong></if>-->
                                 </h2>
                             </div>
                         </div>
@@ -117,21 +118,21 @@
                             </div>
                         </div>
 
-                       <!-- <div id="newPatient" hidden>
-                            <div class="form-group">
-                                <label for="nameNew" class="col-sm-3 control-label">Nombre</label>
-                                <div class="col-sm-9">
-                                    <input class="form-control" id="nameNew" name="nameNew"/>
-                                </div>
-                            </div>
+                        <!-- <div id="newPatient" hidden>
+                             <div class="form-group">
+                                 <label for="nameNew" class="col-sm-3 control-label">Nombre</label>
+                                 <div class="col-sm-9">
+                                     <input class="form-control" id="nameNew" name="nameNew"/>
+                                 </div>
+                             </div>
 
-                            <div class="form-group">
-                                <label for="phoneNumberNew" class="col-sm-3 control-label">Teléfono</label>
-                                <div class="col-sm-9">
-                                    <input class="form-control"  id="phoneNumberNew" name="phoneNumberNew"/>
-                                </div>
-                            </div>
-                        </div>-->
+                             <div class="form-group">
+                                 <label for="phoneNumberNew" class="col-sm-3 control-label">Teléfono</label>
+                                 <div class="col-sm-9">
+                                     <input class="form-control"  id="phoneNumberNew" name="phoneNumberNew"/>
+                                 </div>
+                             </div>
+                         </div>-->
 
 
                         <div class="form-group">
@@ -152,31 +153,43 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary antosubmit">Salvar</button>
+                <button type="button" class="btn btn-primary antosubmit">Guardar</button>
             </div>
         </div>
     </div>
 </div>
-<div id="CalenderModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!--<div id="CalenderModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel2">Editar entrada al calendario</h4>
+                <h4 class="modal-title" id="myModalLabel2">Datos de la Cita</h4>
             </div>
             <div class="modal-body">
 
                 <div id="testmodal2" style="padding: 5px 20px;">
                     <form id="antoform2" class="form-horizontal calender" role="form">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Title</label>
+                            <label class="col-sm-3 control-label">Paciente</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="title2" name="title2">
+                                <input type="text" class="form-control" id="paciente" name="paciente" disabled>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Description</label>
+                            <label class="col-sm-3 control-label">Fecha</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="fecha" name="fecha" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Seguro</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="seguro" name="seguro" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Descripción</label>
                             <div class="col-sm-9">
                                 <textarea class="form-control" style="height:55px;" id="descr2" name="descr"></textarea>
                             </div>
@@ -193,8 +206,10 @@
     </div>
 </div>
 
-<div id="fc_create" data-toggle="modal" data-target="#CalenderModalNew"></div>
+
 <div id="fc_edit" data-toggle="modal" data-target="#CalenderModalEdit"></div>
+-->
+<div id="fc_create" data-toggle="modal" data-target="#CalenderModalNew"></div>
 
 <!-- jQuery -->
 <script src="/vendors/jquery/dist/jquery.min.js"></script>
@@ -258,6 +273,116 @@
             $("#guardar").attr("disabled", $sels.length > 0);
         }).change();
     });
+    $(document).ready(function() {
+
+        json = $.parseJSON([${json_events}].toString());
+        //console.log(json);
+
+            if( typeof ($.fn.fullCalendar) === 'undefined'){ return; }
+
+
+            var date = new Date(),
+                    d = date.getDate(),
+                    m = date.getMonth(),
+                    y = date.getFullYear(),
+                    started,
+                    categoryClass;
+
+            var calendar = $('#calendar').fullCalendar({
+               events: json,
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay,listMonth'
+                },
+                selectable: true,
+                selectHelper: true,
+                select: function(start, end, allDay) {
+                    $('#fc_create').click();
+
+                    started = start;
+                    ended = end;
+
+                    $(".antosubmit").on("click", function() {
+
+                        var title;
+                        var seguro;
+
+                        title = $("#title option:selected").text();
+
+
+                        var code =  $("#title").val();
+
+                        seguro = $("#insurance").val();
+                        var descripcion = $("#descr").val();
+
+                        var start2 = moment(event.start).format("YYYY-MM-DD[T]hh:mm:SS");
+
+                        if (end) {
+                            ended = end;
+                        }
+
+                        categoryClass = $("#event_type").val();
+
+                        if (title) {
+                            calendar.fullCalendar('renderEvent', {
+                                        title: title,
+                                        start: started,
+                                        end: end,
+                                        allDay: allDay
+                                    },
+                                    true // make the event "stick"
+                            );
+
+                            $.ajax({
+                                url: '/newAppointmentPost',
+                                data: 'type=new&codigo='+code+'&date='+ moment(started).format('YYYY-MM-DD[T]hh:mm:SS')+'&description='+descripcion+
+                                '&nombre='+title+'&seguro='+seguro,
+                                type: 'POST',
+                                dataType: 'json',
+                                success: function(response){
+                                    //cuando hago el cambio actualizo el evento
+                                    $('#calendar').fullCalendar('updateEvent',event);
+                                    // event_refresh();
+
+                                },
+                                error: function(e){
+                                    console.log(e.responseText);
+
+                                }
+                            });
+                        }
+
+                        $('#title').val('');
+
+                        calendar.fullCalendar('unselect');
+
+                        $('.antoclose').click();
+
+                        return false;
+                    });
+                },
+                eventClick: function(calEvent, jsEvent, view) {
+                    $('#fc_edit').click();
+                    $('#paciente').val(calEvent.title);
+                    $('#fecha').val(calEvent.start);
+
+                    categoryClass = $("#event_type").val();
+
+                    $(".antosubmit2").on("click", function() {
+                        calEvent.title = $("#title2").val();
+
+                        calendar.fullCalendar('updateEvent', calEvent);
+                        $('.antoclose2').click();
+                    });
+
+                    calendar.fullCalendar('unselect');
+                },
+                editable: true
+            });
+
+    });
+
 </script>
 <!-- /jQuery Tags Input -->
 

@@ -194,8 +194,6 @@ if ($(".progress .progress-bar")[0]) {
 
 // Switchery
 $(document).ready(function() {
-
-
     if ($(".js-switch")[0]) {
         var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
         elems.forEach(function (html) {
@@ -2380,7 +2378,7 @@ if (typeof NProgress != 'undefined') {
 		};
 	   
 	   	/* CALENDAR */
-		  
+
 
 	   
 		/* DATA TABLES */
@@ -4908,9 +4906,7 @@ if (typeof NProgress != 'undefined') {
 	   
 	   
 	$(document).ready(function() {
-
-
-
+				
 		init_sparklines();
 		init_flot_chart();
 		init_sidebar();
