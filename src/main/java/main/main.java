@@ -387,8 +387,8 @@ public class main {
            }
            consulta.setPielDescripcion(request.queryParams("piel")==null? "":request.queryParams("piel"));
            consulta.setDescription(request.queryParams("description")==null? "":request.queryParams("description"));
-           consulta.setPrescription(request.queryParams("tags_1_tag")==null? "":request.queryParams("tags_1"));
-            System.out.println("Tagss"+request.queryParams("tags_1_tag"));
+           consulta.setPrescription(request.queryParams("tags_1")==null? "":request.queryParams("tags_1"));
+            System.out.println("Tagss"+request.queryParams("tags_1"));
            System.out.println("ellll "+request.params("id"));
            Appointment a = AppointmentServices.getInstancia().find(Long.parseLong(request.params("id").replace(",","")));
            a.setStatus(true);
