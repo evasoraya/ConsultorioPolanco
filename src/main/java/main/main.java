@@ -63,16 +63,11 @@ public class main {
                     list2.add(a);
                 }
 
-
-
             }
 
             Collections.sort(list2,(o1,o2) -> o1.getDate().compareTo(o2.getDate()));
 
-
             Map<String, Object> attributes = new HashMap<>();
-
-
 
             attributes.put("patients", list2);
             attributes.put("user",usuario);
