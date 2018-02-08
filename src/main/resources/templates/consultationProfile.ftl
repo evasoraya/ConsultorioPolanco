@@ -276,6 +276,8 @@
 
 <script src="/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
 
+<script src="/build/js/custom.js"></script>
+
 <script>
 
     function onAddTag(tag) {
