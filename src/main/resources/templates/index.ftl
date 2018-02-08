@@ -200,7 +200,6 @@
 
         if( typeof ($.fn.fullCalendar) === 'undefined'){ return; }
 
-
         var date = new Date(),
                 d = date.getDate(),
                 m = date.getMonth(),

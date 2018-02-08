@@ -207,6 +207,7 @@
 </div>
 
 
+
 <div id="fc_edit" data-toggle="modal" data-target="#CalenderModalEdit"></div>
 -->
 <div id="fc_create" data-toggle="modal" data-target="#CalenderModalNew"></div>

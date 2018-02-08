@@ -201,8 +201,8 @@ public class main {
         get("/patientProfile/:id", (request, response) -> {
             User usuario = request.session().attribute(SESSION_NAME);
             if (usuario == null ) response.redirect("/login");
-
-            Appointment a = AppointmentServices.getInstancia().find(Long.parseLong(request.params("id")));
+            System.out.println("Aquii"+Long.parseLong(request.params("id").replace(",","")));
+            Appointment a = AppointmentServices.getInstancia().find(Long.parseLong(request.params("id").replace(",","")));
 
             Map<String, Object> attributes = new HashMap<>();
             attributes.put("consultationList", ConsultationServices.getInstancia().findByPatient(a.getPatient().getCode()));
