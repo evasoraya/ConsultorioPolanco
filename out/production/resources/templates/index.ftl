@@ -66,7 +66,7 @@
                                             </a>
                                             <div class="media-body">
                                                 <a  class="title" href="/patientProfile/${p.code}">${p.patient.name} ${p.patient.lastName}</a>
-                                                <p><strong> Edad: </strong> ${p.patient.gender} </p>
+                                                <p><strong> Genero: </strong> ${p.patient.gender} </p>
 
                                             </div>
                                         </li>

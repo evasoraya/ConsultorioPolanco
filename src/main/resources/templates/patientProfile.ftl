@@ -187,7 +187,7 @@
                                 <div class="x_panel">
                                     <div class="x_content">
 
-                                        <form id="nuevaConsulta" data-parsley-validate="" class="form-horizontal form-label-left" method="post" action="/newConsultationPost">
+                                        <form id="nuevaConsulta" data-parsley-validate="" class="form-horizontal form-label-left" method="post" action="/newConsultationPost/${appointment.code}">
 
                                             <div class="row">
                                                 <div class="profile_title">
@@ -198,9 +198,9 @@
 
                                                 <br>
                                                 <div class="form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-3" for="razonVisita">Razón de su visita:</label>
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-3" for="razonVisita">Razón de su visita: <span class="required">*</span></label>
                                                     <div class="col-md-8 col-sm-8 col-xs-8">
-                                                        <input type="text" id="razonVisita"  name="razonVisita" class="form-control"/>
+                                                        <input type="text" id="razonVisita"  name="razonVisita" required="required" class="form-control"/>
                                                     </div>
                                                 </div>
 
@@ -646,7 +646,10 @@
                                                     <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
                                                 </div>
                                             </div>
-                                                <input name="idCita" value="${appointment.code}" disabled hidden>
+
+
+
+
 
                                             </div>
                                             <div class="ln_solid"></div>
@@ -672,13 +675,13 @@
 
                             <#list consultationList as c>
                                 <li>
-                                    <img src="/images/img.jpg" class="avatar" alt="Avatar">
+                                    <img src="/images/consult.png" class="avatar" alt="Avatar">
                                     <div class="message_date">
-                                        <h4 class="date text-info">${c.appointment.date}</h4>
+                                        <h4 class="date text-info">${fecha}</h4>
 
                                     </div>
                                     <div class="message_wrapper">
-                                        <h4 class="heading">${c.tipoCaso}</h4>
+                                        <a href="/consultation/${c.code}"><h4 class="heading">${c.razonVisita}</h4></a>
                                         <blockquote class="message">${c.description}</blockquote>
                                         <p>${c.prescription}</p>
                                         <br>

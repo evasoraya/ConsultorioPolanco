@@ -40,9 +40,7 @@
                             </div>
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>
-                                        <!--<if canUse>--><a href="/newConsultation" role="button" class="btn btn-primary">New Consultation</a><!--<else><strong>Only ASSISTANT accounts can register new patients</strong></if>-->
-                                    </h2>
+
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
@@ -50,7 +48,7 @@
                                         <thead>
                                         <tr>
                                             <th><span style="text-transform: uppercase;"></span>Paciente</th>
-                                            <th><span style="text-transform: uppercase;"></span>Caso</th>
+                                            <th><span style="text-transform: uppercase;"></span>Razon visita</th>
                                             <th><span style="text-transform: uppercase;"></span>Receta</th>
 
                                         </tr>
@@ -59,8 +57,8 @@
                                         <#list consultationList?sort_by("code") as consultation>
                                         <tr>
 
-                                            <td>${consultation.appointment.patient.name} ${consultation.appointment.patient.lastName}</td>
-                                            <td>${consultation.tipoCaso}</td>
+                                            <td><a href="/consultation/${consultation.code}">${consultation.appointment.patient.name} ${consultation.appointment.patient.lastName}</a></td>
+                                            <td>${consultation.razonVisita}</td>
                                             <td>${consultation.prescription}</td>
 
                                         </tr>
