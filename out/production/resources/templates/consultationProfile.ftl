@@ -142,10 +142,11 @@
                                     <div class="row">
                                         <div class="container">
                                             <div class="row">
-                                                <div class="profile_title">
-                                                    <h2>Historial Salud</h2>
-                                                </div>
+
                                                 <div class="col-md-6">
+                                                    <div class="profile_title">
+                                                        <h2>Historial Salud</h2>
+                                                    </div>
                                                     <h4><strong >Razon Visita: </strong> ${consulta.razonVisita}</h4>
                                                     <h4><strong >Inicio sintomas </strong> ${ consulta.inicioSintomas}</h4>
                                                     <h4><strong >Frecuencia sintomas</strong> ${ consulta.frecuenciaSintomas}</h4>
@@ -156,10 +157,11 @@
                                                     <h4><strong >TratamientoAnterior </strong> ${ consulta.cualTratamientoAnterior}</h4>
                                                     <h4><strong >Historial familiar con la misma condición </strong> ${ consulta.cualFamiliarMismaCondicion}</h4>
                                                 </div>
-                                                <div class="profile_title">
-                                                    <h2>Historial medico pasado</h2>
-                                                </div>
+
                                                 <div class="col-md-6">
+                                                    <div class="profile_title">
+                                                        <h2>Historial medico pasado</h2>
+                                                    </div>
                                                     <h4><strong >Enfermedades serias </strong> ${consulta.cualEnfermedadSeria}</h4>
                                                     <h4><strong >Hospitalizaciones anteriores </strong> ${consulta.cualHospitalizacionesAnteriores}</h4>
                                                     <h4><strong>Operaciones Anteriores </strong> ${consulta.cualOperacionesAnteriores}</h4>

@@ -639,6 +639,7 @@
                                             <div class="control-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="prescription">Receta</label>
                                                 <div class="col-md-8 col-sm-8 col-xs-8">
+                                                    <input data-role="tagsinput" type="text" name="tags" class="tags form-control" placeholder="Post Tags">
                                                     <input id="tags_1" name="tags_1"  type="text" class="tags form-control"  data-tagsinput-init="true" style="display: none;"><div id="tags_1_tagsinput" class="tagsinput" style="width: auto; min-height: 100px; height: 100px;"><span class="tag"><span>social&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><span class="tag"><span>adverts&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><span class="tag"><span>sales&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><span class="tag"><span>nknk&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><div id="tags_1_addTag"><input id="tags_1_tag" name="tags_1_tag"  data-default="add a tag" style="color: rgb(102, 102, 102); width: 72px;"></div><div class="tags_clear"></div></div>
                                                     <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
                                                 </div>
