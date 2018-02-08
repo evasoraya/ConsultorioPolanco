@@ -149,7 +149,6 @@
                                                     <h4><strong >Razon Visita: </strong> ${consulta.razonVisita}</h4>
                                                     <h4><strong >Inicio sintomas </strong> ${ consulta.inicioSintomas}</h4>
                                                     <h4><strong >Frecuencia sintomas</strong> ${ consulta.frecuenciaSintomas}</h4>
-                                                    <h4><strong >Condicion </strong> ${consulta.condicion}</h4>
                                                     <h4><strong >Lugar Dolor </strong> ${ consulta.lugarDolor}</h4>
                                                     <h4><strong >Que lo hace sentir mejor </strong> ${ consulta.loHaceSentirMejor}</h4>
                                                     <h4><strong >Frecuencia dolor </strong> ${ consulta.frecuenciaDolor}</h4>

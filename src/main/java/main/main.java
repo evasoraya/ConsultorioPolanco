@@ -181,7 +181,7 @@ public class main {
             User usuario = request.session().attribute(SESSION_NAME);
             if (usuario == null ) response.redirect("/login");
 
-            Patient a = PatientServices.getInstancia().find(Long.parseLong(request.params("id")));
+            Patient a = PatientServices.getInstancia().find(Long.parseLong(request.params("id").replace(",","")));
 
             Map<String, Object> attributes = new HashMap<>();
 
@@ -193,8 +193,9 @@ public class main {
         get("/consultation/:id", (request, response) -> {
             User usuario = request.session().attribute(SESSION_NAME);
             if (usuario == null ) response.redirect("/login");
-            System.out.println("Aquii"+Long.parseLong(request.params("id")));
-            Consultation a = ConsultationServices.getInstancia().find(Long.parseLong(request.params("id")));
+            System.out.println("Aquii"+Long.parseLong(request.params("id").replace(",","")));
+            Consultation a = ConsultationServices.getInstancia().find(Long.parseLong(request.params("id").replace(",","")));
+
 
             Map<String, Object> attributes = new HashMap<>();
 
@@ -266,7 +267,7 @@ public class main {
             Appointment a = new Appointment();
 
 
-                Patient p = PatientServices.getInstancia().find(Long.parseLong(request.queryParams("codigo")));
+                Patient p = PatientServices.getInstancia().find(Long.parseLong(request.queryParams("codigo").replace(",","")));
 
                 a.setPatient(p);
                 a.setInsurance(request.queryParams("seguro"));
@@ -292,13 +293,13 @@ public class main {
 
             Consultation consulta = new Consultation();
 
-            consulta.setrazonVisita(request.queryParams("razonVisita"));
-            consulta.setInicioSintomas(request.queryParams("inicioSintomas"));
-            consulta.setFrecuenciaSintomas(request.queryParams("frecuenciaSintomas"));
-            consulta.setCondicion(request.queryParams("condicion"));
-            consulta.setLugarDolor(request.queryParams("lugarDolor"));
-            consulta.setLoHaceSentirMejor(request.queryParams("sienteMejor"));
-            consulta.setFrecuenciaDolor(request.queryParams("frecuenciaDolor"));
+            consulta.setrazonVisita(request.queryParams("razonVisita") == null ? "" : request.queryParams("razonVisita"));
+            consulta.setInicioSintomas(request.queryParams("inicioSintomas") == null ?"" : request.queryParams("inicioSintomas") );
+            consulta.setFrecuenciaSintomas(request.queryParams("frecuenciaSintomas")==null? "" :request.queryParams("frecuenciaSintomas"));
+            consulta.setCondicion(request.queryParams("condicion") ==  null ? "" : request.queryParams("condicion"));
+            consulta.setLugarDolor(request.queryParams("lugarDolor") == null ? "":request.queryParams("lugarDolor"));
+            consulta.setLoHaceSentirMejor(request.queryParams("sienteMejor")==null? "":request.queryParams("sienteMejor"));
+            consulta.setFrecuenciaDolor(request.queryParams("frecuenciaDolor") ==null ? "":request.queryParams("frecuenciaDolor"));
             consulta.setActividadesDolor(request.queryParams("actividadesDolor"));
             if(request.queryParams("tratamientoAnteriorSi")!= null && request.queryParams("tratamientoAnteriorSi").equals("on") ){
                 consulta.setTratamientoAnterior(true);
@@ -306,58 +307,58 @@ public class main {
             else {
                 consulta.setTratamientoAnterior(false);
             }
-            consulta.setCualTratamientoAnterior(request.queryParams("tratamientoAnterior"));
+            consulta.setCualTratamientoAnterior(request.queryParams("tratamientoAnterior")==null? "":request.queryParams("tratamientoAnterior"));
             if(request.queryParams("historialFamiliarSi") != null && request.queryParams("historialFamiliarSi").equals("on")){
                 consulta.setHistoriaFamiliarMismaCondicion(true);
             }else{
                 consulta.setHistoriaFamiliarMismaCondicion(false);
             }
-            consulta.setCualFamiliarMismaCondicion(request.queryParams("historialFamiliar"));
+            consulta.setCualFamiliarMismaCondicion(request.queryParams("historialFamiliar")==null? "":request.queryParams("historialFamiliar"));
             if(request.queryParams("enfermedadesSeriasSi") != null && request.queryParams("enfermedadesSeriasSi").equals("on")){
                 consulta.setEnfermedadesSerias(true);
             }
             else {
                 consulta.setEnfermedadesSerias(false);
             }
-            consulta.setCualEnfermedadSeria(request.queryParams("enfermedadesSerias"));
+            consulta.setCualEnfermedadSeria(request.queryParams("enfermedadesSerias")==null? "":request.queryParams("enfermedadesSerias"));
             if(request.queryParams("hospitalizacionesAntSi") != null && request.queryParams("hospitalizacionesAntSi").equals("on")){
                 consulta.setHospitalizacionesAnteriores(true);
             }else{
                 consulta.setTratamientoAnterior(false);
             }
-            consulta.setCualHospitalizacionesAnteriores(request.queryParams("hospitalizacionesAnt"));
+            consulta.setCualHospitalizacionesAnteriores(request.queryParams("hospitalizacionesAnt")==null? "":request.queryParams("hospitalizacionesAnt"));
             if(request.queryParams("operacionesAntSi") != null && request.queryParams("operacionesAntSi").equals("on")){
                 consulta.setOperacionesAnteriores(true);
             }
             else{
                 consulta.setOperacionesAnteriores(false);
             }
-            consulta.setCualOperacionesAnteriores(request.queryParams("operacionesAnt"));
+            consulta.setCualOperacionesAnteriores(request.queryParams("operacionesAnt")==null? "":request.queryParams("operacionesAnt"));
             if(request.queryParams("medicamentosSi") != null && request.queryParams("medicamentosSi").equals("on")){
                 consulta.setMedicamentos(true);
             }
             else{
                 consulta.setMedicamentos(false);
             }
-            consulta.setCualMedicamentos(request.queryParams("medicamentos"));
+            consulta.setCualMedicamentos(request.queryParams("medicamentos")==null? "":request.queryParams("medicamentos"));
             if(request.queryParams("alergiasSi") != null && request.queryParams("alergiasSi").equals("on")){
                 consulta.setAlergias(true);
             }
             else{
                 consulta.setAlergias(false);
             }
-            consulta.setCualAlergias(request.queryParams("alergias"));
+            consulta.setCualAlergias(request.queryParams("alergias")==null? "":request.queryParams("alergias"));
             if(request.queryParams("historialFamCondicionSi") != null && request.queryParams("historialFamCondicionSi").equals("on")){
                 consulta.setSihistorialFamiliarMismaCondicionHMP(true);
             }
             else {
                 consulta.setSihistorialFamiliarMismaCondicionHMP(false);
             }
-            consulta.setHistorialFamiliarMismaCondicionHMP(request.queryParams("historialFamCondicion"));
-            consulta.setLugarNacimiento(request.queryParams("lugarNacimiento"));
-            consulta.setPesoLbs(Float.parseFloat(request.queryParams("pesoLbs")));
-            consulta.setPesoOnz(Float.parseFloat(request.queryParams("pesoOnz")));
-            consulta.setEstatura(Float.parseFloat(request.queryParams("estatura")));
+            consulta.setHistorialFamiliarMismaCondicionHMP(request.queryParams("historialFamCondicion")==null? "":request.queryParams("historialFamCondicion"));
+            consulta.setLugarNacimiento(request.queryParams("lugarNacimiento")==null? "":request.queryParams("lugarNacimiento"));
+            consulta.setPesoLbs(Float.parseFloat(request.queryParams("pesoLbs")==null? "0":request.queryParams("pesoLbs")));
+            consulta.setPesoOnz(Float.parseFloat(request.queryParams("pesoOnz")==null? "0":request.queryParams("pesoOnz")));
+            consulta.setEstatura(Float.parseFloat(request.queryParams("estatura")==null?"0":request.queryParams("estatura")));
             if(request.queryParams("prematuroSi") != null && request.queryParams("prematuroSi").equals("on")){
                 consulta.setPrematuro(true);
             }else{
@@ -368,27 +369,28 @@ public class main {
             }else{
                 consulta.setCesarea(false);
             }
-            consulta.setCantidadEmbarazos(Integer.parseInt(request.queryParams("noEmbarazos")));
-            consulta.setCantidadHijos(Integer.parseInt(request.queryParams("noHijos")));
-            consulta.setMesesSeParo(Float.parseFloat(request.queryParams("seParo")));
-            consulta.setMesesCamino(Float.parseFloat(request.queryParams("camino")));
-            consulta.setMesesHablo(Float.parseFloat(request.queryParams("hablo")));
+            consulta.setCantidadEmbarazos(Integer.parseInt(request.queryParams("noEmbarazos")==null? "0":request.queryParams("noEmbarazos")));
+            consulta.setCantidadHijos(Integer.parseInt(request.queryParams("noHijos")==null? "0":request.queryParams("noHijos")));
+            consulta.setMesesSeParo(Float.parseFloat(request.queryParams("seParo")==null?"0":request.queryParams("seParo")));
+            consulta.setMesesCamino(Float.parseFloat(request.queryParams("camino")==null? "0":request.queryParams("camino")));
+            consulta.setMesesHablo(Float.parseFloat(request.queryParams("hablo")==null? "0":request.queryParams("hablo")));
             if(request.queryParams("fiebreSi")!= null && request.queryParams("fiebreSi").equals("on")){
                 consulta.setFiebre(true);
             }else{
                 consulta.setFiebre(false);
             }
-            consulta.setFiebreDescripcion(request.queryParams("fiebre"));
+            consulta.setFiebreDescripcion(request.queryParams("fiebre")==null?"":request.queryParams("fiebre"));
            if(request.queryParams("pielSi") != null && request.queryParams("pielSi").equals("on")){
                consulta.setPiel(true);
            }else{
                consulta.setPiel(false);
            }
-           consulta.setPielDescripcion(request.queryParams("piel"));
-           consulta.setDescription(request.queryParams("description"));
-           consulta.setPrescription(request.queryParams("tags_1"));
+           consulta.setPielDescripcion(request.queryParams("piel")==null? "":request.queryParams("piel"));
+           consulta.setDescription(request.queryParams("description")==null? "":request.queryParams("description"));
+           consulta.setPrescription(request.queryParams("tags_1_tag")==null? "":request.queryParams("tags_1"));
+            System.out.println("Tagss"+request.queryParams("tags_1_tag"));
            System.out.println("ellll "+request.params("id"));
-           Appointment a = AppointmentServices.getInstancia().find(Long.parseLong(request.params("id")));
+           Appointment a = AppointmentServices.getInstancia().find(Long.parseLong(request.params("id").replace(",","")));
            a.setStatus(true);
            AppointmentServices.getInstancia().editar(a);
            consulta.setAppointment(a);

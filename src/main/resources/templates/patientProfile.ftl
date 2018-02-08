@@ -478,18 +478,15 @@
 
                                                 <div class="row">
                                                     <div class="form-group">
-                                                        <label class="control-label  col-md-3 col-sm-3 col-xs-3">Peso</label>
+                                                        <label class="control-label  col-md-3 col-sm-3 col-xs-3" for="pesoLbs">Peso<span class="required">*</span></label>
                                                         <div class="col-md-2 col-sm-2 col-xs-2" style="margin-left: 5px">
-                                                            <input type="number" id="pesoLbs" name="pesoLbs" class="form-control"/>lbs.
+                                                            <input type="number" id="pesoLbs" name="pesoLbs" value="0" class="form-control"/>lbs.
                                                         </div>
 
-                                                        <div class="col-md-2 col-sm-2 col-xs-2">
-                                                            <input type="number" id="pesoOnz" name="pesoOnz" class="form-control"/>onz.
-                                                        </div>
 
-                                                        <label class="control-label  col-md-1 col-sm-1 col-xs-1" for="estatura">Estatura</label>
+                                                        <label class="control-label  col-md-1 col-sm-1 col-xs-1" for="estatura">Estatura<span class="required">*</span></label>
                                                         <div class="col-md-3 col-sm-3 col-xs-3">
-                                                            <input type="number" id="estatura" name="estatura" style="width: 95%" class="form-control"/>
+                                                            <input type="number" id="estatura" name="estatura" value="0" style="width: 95%" class="form-control"/>
                                                         </div>
 
                                                     </div>
@@ -502,12 +499,12 @@
                                                         <div class="col-md-4 col-sm-4 col-xs-4">
                                                             <div class="checkbox col-sm-1 control-label">
                                                                 <label>
-                                                                    <input type="checkbox" id="prematuroSi" name="prematuroSi" class="flat">Si
+                                                                    <input type="checkbox" id="prematuroSi" value="0" name="prematuroSi" class="flat">Si
                                                                 </label>
                                                             </div>
                                                             <div class="checkbox col-sm-9 control-label">
                                                                 <label>
-                                                                    <input type="checkbox" id="prematuroNo" name="prematuroNo" class="flat">No
+                                                                    <input type="checkbox" id="prematuroNo" value="0" name="prematuroNo" class="flat">No
                                                                 </label>
                                                             </div>
                                                         </div>
@@ -517,12 +514,12 @@
                                                         <div class="col-md-4 col-sm-4 col-xs-4">
                                                             <div class="checkbox col-sm-1 control-label">
                                                                 <label>
-                                                                    <input type="checkbox" id="cesareaSi" name="cesareaSi" class="flat">Si
+                                                                    <input type="checkbox" id="cesareaSi" value="0" name="cesareaSi" class="flat">Si
                                                                 </label>
                                                             </div>
                                                             <div class="checkbox col-sm-9 control-label">
                                                                 <label>
-                                                                    <input type="checkbox" id="cesareaNo" name="cesareaNo" class="flat">No
+                                                                    <input type="checkbox" id="cesareaNo" value="0" name="cesareaNo" class="flat">No
                                                                 </label>
                                                             </div>
                                                         </div>
@@ -530,15 +527,15 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="form-group col-md-6">
-                                                        <label class="control-label  col-md-6 col-sm-6 col-xs-6" for="noEmbarazos">Para la madre? Número de embarazos</label>
+                                                        <label class="control-label  col-md-6 col-sm-6 col-xs-6" for="noEmbarazos">Para la madre? Número de embarazos<span class="required">*</span></label>
                                                         <div class="col-md-4 col-sm-4 col-xs-4">
-                                                            <input type="number" id="noEmbarazos" name="noEmbarazos" class="form-control"/>
+                                                            <input type="number" id="noEmbarazos" name="noEmbarazos" value="0" class="form-control"/>
                                                         </div>
                                                     </div>
                                                     <div class="form-group col-md-6">
-                                                        <label class="control-label  col-md-4 col-sm-4 col-xs-4" for="noHijos">Número de hijos</label>
+                                                        <label class="control-label  col-md-4 col-sm-4 col-xs-4" for="noHijos">Número de hijos<span class="required">*</span></label>
                                                         <div class="col-md-4 col-sm-4 col-xs-4">
-                                                            <input type="number" id="noHijos" name="noHijos" class="form-control"/>
+                                                            <input type="number" id="noHijos" name="noHijos" value="0" class="form-control"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -546,21 +543,21 @@
                                                     <label>Historial de desarrollo:</label>
                                                 </div>
                                                 <div class="form-group ">
-                                                    <label class="control-label  col-md-3 col-sm-3 col-xs-3" for="seParo">El niño se paró a los</label>
+                                                    <label class="control-label  col-md-3 col-sm-3 col-xs-3" for="seParo">El niño se paró a los<span class="required">*</span></label>
                                                     <div class="col-md-2 col-sm-2 col-xs-2">
-                                                        <input type="number" id="seParo" name="seParo" class="form-control"/>meses
+                                                        <input type="number" id="seParo" name="seParo" value="0" class="form-control"/>meses
                                                     </div>
                                                 </div>
                                                 <div class="form-group ">
-                                                    <label class="control-label  col-md-3 col-sm-3 col-xs-3" for="camino">El niño caminó a los</label>
+                                                    <label class="control-label  col-md-3 col-sm-3 col-xs-3" for="camino">El niño caminó a los<span class="required">*</span></label>
                                                     <div class="col-md-2 col-sm-2 col-xs-2">
-                                                        <input type="number" id="camino" name="camino" class="form-control"/>meses
+                                                        <input type="number" id="camino" name="camino" value="0" class="form-control"/>meses
                                                     </div>
                                                 </div>
                                                 <div class="form-group ">
-                                                    <label class="control-label  col-md-3 col-sm-3 col-xs-3" for="hablo">El niño habló a los</label>
+                                                    <label class="control-label  col-md-3 col-sm-3 col-xs-3" for="hablo">El niño habló a los<span class="required">*</span></label>
                                                     <div class="col-md-2 col-sm-2 col-xs-2">
-                                                        <input type="number" id="hablo" name="hablo" class="form-control"/>meses
+                                                        <input type="number" id="hablo" name="hablo" value="0" class="form-control"/>meses
                                                     </div>
                                                 </div>
                                             </div>
@@ -635,14 +632,14 @@
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Descripción <span class="required">*</span>
                                                 </label>
                                                 <div class="col-md-8 col-sm-8 col-xs-8">
-                                                    <textarea type="text" id="description" required="required" name="description" class="form-control col-md-7 col-xs-12"></textarea>
+                                                    <textarea type="text" id="description" required="required"  name="description" class="form-control col-md-7 col-xs-12"></textarea>
                                                 </div>
                                             </div>
 
                                             <div class="control-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="prescription">Receta</label>
                                                 <div class="col-md-8 col-sm-8 col-xs-8">
-                                                    <input id="tags_1" name="tags_1"  type="text" class="tags form-control"  data-tagsinput-init="true" style="display: none;"><div id="tags_1_tagsinput" class="tagsinput" style="width: auto; min-height: 100px; height: 100px;"><span class="tag"><span>social&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><span class="tag"><span>adverts&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><span class="tag"><span>sales&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><span class="tag"><span>nknk&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><div id="tags_1_addTag"><input id="tags_1_tag" value="" data-default="add a tag" style="color: rgb(102, 102, 102); width: 72px;"></div><div class="tags_clear"></div></div>
+                                                    <input id="tags_1" name="tags_1"  type="text" class="tags form-control"  data-tagsinput-init="true" style="display: none;"><div id="tags_1_tagsinput" class="tagsinput" style="width: auto; min-height: 100px; height: 100px;"><span class="tag"><span>social&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><span class="tag"><span>adverts&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><span class="tag"><span>sales&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><span class="tag"><span>nknk&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><div id="tags_1_addTag"><input id="tags_1_tag" name="tags_1_tag"  data-default="add a tag" style="color: rgb(102, 102, 102); width: 72px;"></div><div class="tags_clear"></div></div>
                                                     <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
                                                 </div>
                                             </div>
