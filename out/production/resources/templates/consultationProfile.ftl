@@ -125,7 +125,7 @@
                                     <div class="profile_img">
                                         <div id="crop-avatar">
                                             <!-- Current avatar -->
-                                            <img class="img-responsive avatar-view" src="/images/picture.jpg" alt="Avatar" title="Change the avatar">
+                                            <img class="img-responsive avatar-view" src="/images/fotoP.png" alt="Avatar" title="Change the avatar">
                                         </div>
                                     </div>
                                     <h3>${consulta.appointment.patient.name}</h3>
@@ -138,6 +138,8 @@
                                             <h2>Información Consulta</h2>
                                         </div>
                                     </div>
+                                    <br>
+                                    <br>
 
                                     <div class="row">
                                         <div class="container">
@@ -185,9 +187,7 @@
                                                     <h4><strong >Cantidad de embarazos (Madre) </strong> ${consulta.cantidadEmbarazos}</h4>
                                                     <h4><strong >Cantidad de hijos (Madre) </strong> ${consulta.cantidadHijos}</h4>
                                                 </div>
-                                                <div class="profile_title">
-                                                    <h2></h2>
-                                                </div>
+
                                                 <div class="col-md-6">
                                                     <h4><strong >Primera vez parado </strong> ${consulta.mesesSeParo}</h4>
                                                     <h4><strong >Primera vez caminando</strong> ${consulta.mesesCamino}</h4>
@@ -198,11 +198,17 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
+                                                    <div class="profile_title">
+                                                        <h2>Revision del sistema</h2>
+                                                    </div>
                                                     <h4><strong >Fiebre? </strong> ${consulta.fiebreDescripcion}</h4>
                                                     <h4><strong >Piel? </strong> ${ consulta.pielDescripcion}</h4>
 
                                                 </div>
                                                 <div class="col-md-6">
+                                                    <div class="profile_title">
+                                                        <h2>Receta y descripcion</h2>
+                                                    </div>
                                                     <h4><strong >Descripcion consulta </strong> ${consulta.description}</h4>
                                                     <h4><strong >Receta</strong> ${consulta.prescription}</h4>
 
@@ -277,6 +283,8 @@
 
 
 <script src="/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+
+<script src="/build/js/custom.js"></script>
 
 <script>
 

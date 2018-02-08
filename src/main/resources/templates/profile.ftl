@@ -125,7 +125,7 @@
                                     <div class="profile_img">
                                         <div id="crop-avatar">
                                             <!-- Current avatar -->
-                                            <img class="img-responsive avatar-view" src="/images/picture.jpg" alt="Avatar" title="Change the avatar">
+                                            <img class="img-responsive avatar-view" src="/images/fotoP.png" alt="Avatar" title="Change the avatar">
                                         </div>
                                     </div>
                                     <h3>${ patient.name}</h3>
@@ -230,6 +230,8 @@
 
 
 <script src="/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+
+<script src="/build/js/custom.js"></script>
 
 <script>
 
