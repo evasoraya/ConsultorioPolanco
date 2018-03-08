@@ -64,7 +64,11 @@ public class main {
 
 
             for(Appointment a : list){
-                if(!a.getStatus() && a.getDate().split("T")[0].split("-")[2].equals(df.format(d).split("/")[1])){
+                if(!a.getStatus() && a.getDate().split("T")[0].split("-")[2].equals(df.format(d).split("/")[1]) &&
+                        a.getDate().split("T")[0].split("-")[1].equals(df.format(d).split("/")[0]) &&
+                        a.getDate().split("T")[0].split("-")[0].equals(df.format(d).split("/")[2])
+                        ){
+                    System.out.println(a.getDate().split("T")[0].split("-")[1] +" ---"+df.format(d).split("/")[0]);
                     list2.add(a);
                 }
 
@@ -236,6 +240,9 @@ public class main {
             Map<String, Object> attributes = new HashMap<>();
 
             attributes.put("consulta",a);
+            attributes.put("consultationList", ConsultationServices.getInstancia().findByPatient(a.getAppointment().getPatient().getCode()));
+
+            attributes.put("fecha",a.getAppointment().getDate().split("T")[0]);
             attributes.put("user",usuario);
             return new ModelAndView(attributes, "consultationProfile.ftl");
         }, freeMarkerEngine);

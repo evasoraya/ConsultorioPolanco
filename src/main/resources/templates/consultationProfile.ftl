@@ -134,85 +134,150 @@
                                 <div class="col-md-9 col-sm-9 col-xs-12">
 
                                     <div class="profile_title">
-                                        <div class="col-md-6">
-                                            <h2>Información Consulta</h2>
+                                        <div class="col-md-12">
+
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <h2>Información Consulta</h2>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <h2>Fecha de la consulta: </h2> ${fecha}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <br>
                                     <br>
 
-                                    <div class="row">
-                                        <div class="container">
-                                            <div class="row">
 
-                                                <div class="col-md-6">
-                                                    <div class="profile_title">
-                                                        <h2>Historial Salud</h2>
+
+                                    <div class="row" role="tabpanel" data-example-id="togglable-tabs">
+                                        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                            <li role="presentation" class="active"><a href="#tab_content1" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Consulta Actual</a>
+                                            </li>
+                                            <li role="presentation" class=""><a href="#tab_content2" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Historial de consultas</a>
+                                            </li>
+
+                                        </ul>
+                                        <div id="myTabContent" class="tab-content">
+
+                                            <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="profile-tab">
+
+                                                <!-- start user projects -->
+                                                <div class="col-md-12">
+                                                    <div class="x_panel">
+                                                        <div class="x_content">
+                                                            <div class="row">
+                                                                <div class="container">
+                                                                    <div class="row">
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="profile_title">
+
+                                                                                <h2>Historial Salud</h2>
+
+
+                                                                            </div>
+                                                                            <h4><strong >Razon Visita: </strong> ${consulta.razonVisita}</h4>
+                                                                            <h4><strong >Inicio sintomas </strong> ${ consulta.inicioSintomas}</h4>
+                                                                            <h4><strong >Frecuencia sintomas</strong> ${ consulta.frecuenciaSintomas}</h4>
+                                                                            <h4><strong >Lugar Dolor </strong> ${ consulta.lugarDolor}</h4>
+                                                                            <h4><strong >Que lo hace sentir mejor </strong> ${ consulta.loHaceSentirMejor}</h4>
+                                                                            <h4><strong >Frecuencia dolor </strong> ${ consulta.frecuenciaDolor}</h4>
+                                                                            <h4><strong >Actividades dolor </strong> ${ consulta.actividadesDolor}</h4>
+                                                                            <h4><strong >TratamientoAnterior </strong> ${ consulta.cualTratamientoAnterior}</h4>
+                                                                            <h4><strong >Historial familiar con la misma condición </strong> ${ consulta.cualFamiliarMismaCondicion}</h4>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="profile_title">
+                                                                                <h2>Historial medico pasado</h2>
+                                                                            </div>
+                                                                            <h4><strong >Enfermedades serias </strong> ${consulta.cualEnfermedadSeria}</h4>
+                                                                            <h4><strong >Hospitalizaciones anteriores </strong> ${consulta.cualHospitalizacionesAnteriores}</h4>
+                                                                            <h4><strong>Operaciones Anteriores </strong> ${consulta.cualOperacionesAnteriores}</h4>
+                                                                            <h4><strong>Medicamentos </strong> ${consulta.cualMedicamentos}</h4>
+                                                                            <h4><strong> Historial familiar condicion similar </strong> ${consulta.historialFamiliarMismaCondicionHMP}</h4>
+
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="profile_title">
+                                                                            <h2>Historial nacimiento</h2>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h4><strong >Lugar nacimiento</strong> ${consulta.lugarNacimiento}</h4>
+                                                                            <h4><strong >Peso (Libras) </strong> ${ consulta.pesoLbs}</h4>
+                                                                            <h4><strong >Peso (onz)</strong> ${ consulta.pesoOnz}</h4>
+                                                                            <h4><strong >Estatura </strong> ${consulta.estatura}</h4>
+                                                                            <h4><strong >Prematuro? </strong> <#if consulta.prematuro == true> si <#else> no </#if></h4>
+                                                                            <h4><strong >Cesaria? </strong> <#if consulta.cesarea ==true> si <#else> no </#if></h4>
+                                                                            <h4><strong >Cantidad de embarazos (Madre) </strong> ${consulta.cantidadEmbarazos}</h4>
+                                                                            <h4><strong >Cantidad de hijos (Madre) </strong> ${consulta.cantidadHijos}</h4>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <h4><strong >Primera vez parado </strong> ${consulta.mesesSeParo}</h4>
+                                                                            <h4><strong >Primera vez caminando</strong> ${consulta.mesesCamino}</h4>
+                                                                            <h4><strong>Primera vez hablando </strong> ${consulta.mesesHablo}</h4>
+
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <div class="profile_title">
+                                                                                <h2>Revision del sistema</h2>
+                                                                            </div>
+                                                                            <h4><strong >Fiebre? </strong> ${consulta.fiebreDescripcion}</h4>
+                                                                            <h4><strong >Piel? </strong> ${ consulta.pielDescripcion}</h4>
+
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="profile_title">
+                                                                                <h2>Receta y descripcion</h2>
+                                                                            </div>
+                                                                            <h4><strong >Descripcion consulta </strong> ${consulta.description}</h4>
+                                                                            <h4><strong >Receta</strong> ${consulta.prescription}</h4>
+
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
                                                     </div>
-                                                    <h4><strong >Razon Visita: </strong> ${consulta.razonVisita}</h4>
-                                                    <h4><strong >Inicio sintomas </strong> ${ consulta.inicioSintomas}</h4>
-                                                    <h4><strong >Frecuencia sintomas</strong> ${ consulta.frecuenciaSintomas}</h4>
-                                                    <h4><strong >Lugar Dolor </strong> ${ consulta.lugarDolor}</h4>
-                                                    <h4><strong >Que lo hace sentir mejor </strong> ${ consulta.loHaceSentirMejor}</h4>
-                                                    <h4><strong >Frecuencia dolor </strong> ${ consulta.frecuenciaDolor}</h4>
-                                                    <h4><strong >Actividades dolor </strong> ${ consulta.actividadesDolor}</h4>
-                                                    <h4><strong >TratamientoAnterior </strong> ${ consulta.cualTratamientoAnterior}</h4>
-                                                    <h4><strong >Historial familiar con la misma condición </strong> ${ consulta.cualFamiliarMismaCondicion}</h4>
                                                 </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="profile_title">
-                                                        <h2>Historial medico pasado</h2>
-                                                    </div>
-                                                    <h4><strong >Enfermedades serias </strong> ${consulta.cualEnfermedadSeria}</h4>
-                                                    <h4><strong >Hospitalizaciones anteriores </strong> ${consulta.cualHospitalizacionesAnteriores}</h4>
-                                                    <h4><strong>Operaciones Anteriores </strong> ${consulta.cualOperacionesAnteriores}</h4>
-                                                    <h4><strong>Medicamentos </strong> ${consulta.cualMedicamentos}</h4>
-                                                    <h4><strong> Historial familiar condicion similar </strong> ${consulta.historialFamiliarMismaCondicionHMP}</h4>
-
-                                                </div>
+                                                <!-- end user projects -->
 
                                             </div>
-                                            <div class="row">
-                                                <div class="profile_title">
-                                                    <h2>Historial nacimiento</h2>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <h4><strong >Lugar nacimiento</strong> ${consulta.lugarNacimiento}</h4>
-                                                    <h4><strong >Peso (Libras) </strong> ${ consulta.pesoLbs}</h4>
-                                                    <h4><strong >Peso (onz)</strong> ${ consulta.pesoOnz}</h4>
-                                                    <h4><strong >Estatura </strong> ${consulta.estatura}</h4>
-                                                    <h4><strong >Prematuro? </strong> <#if consulta.prematuro == true> si <#else> no </#if></h4>
-                                                    <h4><strong >Cesaria? </strong> <#if consulta.cesarea ==true> si <#else> no </#if></h4>
-                                                    <h4><strong >Cantidad de embarazos (Madre) </strong> ${consulta.cantidadEmbarazos}</h4>
-                                                    <h4><strong >Cantidad de hijos (Madre) </strong> ${consulta.cantidadHijos}</h4>
-                                                </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="home-tab">
 
-                                                <div class="col-md-6">
-                                                    <h4><strong >Primera vez parado </strong> ${consulta.mesesSeParo}</h4>
-                                                    <h4><strong >Primera vez caminando</strong> ${consulta.mesesCamino}</h4>
-                                                    <h4><strong>Primera vez hablando </strong> ${consulta.mesesHablo}</h4>
+                                                <!-- start recent activity -->
+                                                <ul class="messages">
 
-                                                </div>
+                                                <#list consultationList as c>
+                                                    <li>
+                                                        <img src="/images/consult.png" class="avatar" alt="Avatar">
+                                                        <div class="message_date">
+                                                            <h4 class="date text-info">${fecha}</h4>
 
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="profile_title">
-                                                        <h2>Revision del sistema</h2>
-                                                    </div>
-                                                    <h4><strong >Fiebre? </strong> ${consulta.fiebreDescripcion}</h4>
-                                                    <h4><strong >Piel? </strong> ${ consulta.pielDescripcion}</h4>
+                                                        </div>
+                                                        <div class="message_wrapper">
+                                                            <a href="/consultation/${c.code}"><h4 class="heading">${c.razonVisita}</h4></a>
+                                                            <blockquote class="message">${c.description}</blockquote>
+                                                            <p>${c.prescription}</p>
+                                                            <br>
 
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="profile_title">
-                                                        <h2>Receta y descripcion</h2>
-                                                    </div>
-                                                    <h4><strong >Descripcion consulta </strong> ${consulta.description}</h4>
-                                                    <h4><strong >Receta</strong> ${consulta.prescription}</h4>
+                                                        </div>
+                                                    </li>
+                                                </#list>
 
-                                                </div>
+
+                                                </ul>
+                                                <!-- end recent activity -->
 
                                             </div>
                                         </div>
