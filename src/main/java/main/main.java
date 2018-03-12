@@ -140,7 +140,7 @@ public class main {
 
             Map<String, Object> attributes = new HashMap<>();
             attributes.put("user",usuario);
-            return new ModelAndView(attributes, "newUSer.ftl");
+            return new ModelAndView(attributes, "newUser.ftl");
         }, freeMarkerEngine);
 
         get("/consultation", (request, response) -> {
