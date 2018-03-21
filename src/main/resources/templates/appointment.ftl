@@ -46,6 +46,7 @@
                                             <th><span style="text-transform: uppercase;"></span>Nombre</th>
                                             <th><span style="text-transform: uppercase;"></span>Hora registro</th>
                                             <th><span style="text-transform: uppercase;"></span>Seguro</th>
+                                            <th><span style="text-transform: uppercase;"></span>Estatus</th>
 
 
                                         </tr>
@@ -55,9 +56,18 @@
                                         <tr>
 
                                             <td>${appointment.patient.ID}</td>
-                                            <td>${appointment.patient.name} ${appointment.patient.lastName}</td>
+                                            <td> <a  href="/patientProfile/${appointment.code}">${appointment.patient.name} ${appointment.patient.lastName}</td>
                                             <td>${appointment.date}</td>
                                             <td>${appointment.insurance}</td>
+                                            <#if (appointment.status)>
+                                            <td>Consulta atendida</td>
+                                            </#if>
+                                            <#if !(appointment.status)>
+                                                <td>Consulta pendiente</td>
+                                            </#if>
+                                            <!--<td>
+                                                <a href="/borrarA/${appointment.code}"> <i  class="fa fa-trash"></i></a>
+                                            </td>-->
 
                                         </tr>
                                         <#else>

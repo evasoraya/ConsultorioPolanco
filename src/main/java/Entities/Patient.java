@@ -3,12 +3,13 @@ package Entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
 @Entity
-public class Patient {
+public class Patient implements Serializable {
 
     @Id
     @GeneratedValue

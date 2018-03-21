@@ -63,7 +63,7 @@
                                             <td>${u.name}</td>
                                             <td>${u.lastName}</td>
                                             <td>${u.email}</td>
-                                            <
+
 
                                         </tr>
                                         <#else>

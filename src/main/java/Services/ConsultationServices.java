@@ -32,4 +32,14 @@ public class ConsultationServices extends GestionDB<Consultation> {
         return (List<Consultation>) query.getResultList();
 
     }
+
+    public Consultation findByAppoint(Long code){
+        EntityManager em = getEntityManager();
+        Query query = em.createQuery("select c from  Consultation c where c.appointment.code like :code");
+
+        query.setParameter("code", code);
+
+        return (Consultation) query.getResultList().get(0);
+
+    }
 }

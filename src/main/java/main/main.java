@@ -164,6 +164,26 @@ public class main {
             return new ModelAndView(attributes, "users.ftl");
         }, freeMarkerEngine);
 
+        get("/borrarP/:id", (req, res) -> {
+            System.out.println("Aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii" + req.params("id"));
+
+           PatientServices.getInstancia().eliminar(Long.parseLong(req.params("id").replace(",","")));
+           res.redirect("/patient");
+            return null;
+        });
+
+        get("/borrarC/:id", (req, res) -> {
+           ConsultationServices.getInstancia().eliminar(Long.parseLong(req.params("id").replace(",","")));
+            res.redirect("/consultation");
+            return null;
+        });
+
+        get("/borrarA/:id", (req, res) -> {
+            AppointmentServices.getInstancia().eliminar(Long.parseLong(req.params("id").replace(",","")));
+            res.redirect("/appointment");
+            return null;
+        });
+
         get("/appointment", (request, response) -> {
             User usuario = request.session().attribute(SESSION_NAME);
             if (usuario == null ) response.redirect("/login");
@@ -201,6 +221,7 @@ public class main {
             attributes.put("user",usuario);
             return new ModelAndView(attributes, "newAppointment.ftl");
         }, freeMarkerEngine);
+
 
         get("/patientProfile/:id", (request, response) -> {
             User usuario = request.session().attribute(SESSION_NAME);
@@ -476,16 +497,22 @@ public class main {
             if (usuario == null ||usuario.getRole().equals("secretaria") )
                 response.redirect("/");
         }));
+        before("/patientProfile" ,((request, response) -> {
+            User usuario = request.session().attribute(SESSION_NAME);
+            if (usuario == null ||usuario.getRole().equals("secretaria") )
+                response.redirect("/");
+        }));
+
 
         before("/newAppointment",((request, response) -> {
             User usuario = request.session().attribute(SESSION_NAME);
-            if (usuario == null ||usuario.getRole().equals("doctora") )
+            if (usuario == null  )
                 response.redirect("/");
         }));
 
         before("/appointment",((request, response) -> {
             User usuario = request.session().attribute(SESSION_NAME);
-            if (usuario == null ||usuario.getRole().equals("doctora") )
+            if (usuario == null  )
                 response.redirect("/");
         }));
 

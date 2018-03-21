@@ -1,17 +1,19 @@
 package Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Consultation {
+public class Consultation implements Serializable {
 
     @Id
     @GeneratedValue
     private long code;
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Appointment appointment;
     private String razonVisita;
     private String inicioSintomas;

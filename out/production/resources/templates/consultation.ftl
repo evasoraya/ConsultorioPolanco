@@ -60,6 +60,11 @@
                                             <td><a href="/consultation/${consultation.code}">${consultation.appointment.patient.name} ${consultation.appointment.patient.lastName}</a></td>
                                             <td>${consultation.razonVisita}</td>
                                             <td>${consultation.prescription}</td>
+                                            <!--
+                                            <td>
+                                                <a href="/borrarC/${consultation.code}"> <i  class="fa fa-trash"></i></a>
+                                            </td>
+                                            -->
 
                                         </tr>
                                         <#else>

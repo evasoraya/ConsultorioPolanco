@@ -61,6 +61,9 @@
                                             <td>${patient.gender}</td>
                                             <td>${patient.birthdate}</td>
                                             <td>${patient.nationality}</td>
+                                           <!-- <td>
+                                                <a href="/borrarP/${patient.code}"> <i  class="fa fa-trash"></i></a>
+                                            </td> -->
                                         </tr>
                                         <#else>
                                         <tr>

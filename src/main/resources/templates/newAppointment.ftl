@@ -23,6 +23,8 @@
     <link href="/vendors/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print">
 
 
+
+
     <link href="/css/newAppointment.css" rel="stylesheet">
 
 
@@ -106,13 +108,12 @@
                         <div class="form-group" >
                             <label for="title" class="col-sm-3 control-label">Paciente</label>
                             <div class="col-sm-9">
-                                <select id="title" required="required" name="title" class="select2_group form-control">
-                                    <optgroup label="Todos los Pacientes">
-                                        <option selected disabled>Seleccione</option>
+                                <select id="title" required="required" name="title" class="select2_group form-control" data-live-search= true>
+
                                     <#list patients as p>
                                         <option value="${p.code}">${p.name} ${p.lastName}</option>
                                     </#list>
-                                    </optgroup>
+
 
                                 </select>
                             </div>

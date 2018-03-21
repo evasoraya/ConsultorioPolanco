@@ -35,7 +35,7 @@
 
                     </li>
                     </#if>
-                    <#if (user.role) == "secretaria" || (user.role) == "admin" >
+                    <#if (user.role) == "secretaria" || (user.role) == "admin" || (user.role) == "doctora" >
                     <li><a><i class="fa fa-calendar"></i> Citas <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="/newAppointment">Nueva Cita</a></li>

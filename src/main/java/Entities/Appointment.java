@@ -1,15 +1,21 @@
 package Entities;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class Appointment {
+public class Appointment implements Serializable {
 
     @Id
     @GeneratedValue
     private long code;
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Patient patient;
     private String date;
     private String description;
